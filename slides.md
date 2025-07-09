@@ -1,193 +1,83 @@
-# Presentation slides with Reveal.js
-
-Georgios Arampatzis, 2025
-
----
-
-# Why Reveal.js?
-
-- Cross-platform
-- Markdown-based
-- Supports math with LaTeX
-- Looks great
-
----
-
-# Inline Math
-
-Einstein's formula: $E = mc^2$
-
----
-
-# Block Math
-
-$$
-\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
-$$
-
----
-
-# Vertical slides
-
-This is the parent of vertical slides.
-
---
-## Vertical slide 1
-
-This is a vertical slide under the parent slide.
-
---
-## Vertical slide 2
-
-Another vertical slide under the parent slide.
-
----
-
-# Add figures
-
-Add a figure with Markdown code
-
-```markdown
-    ![Histogram of the solution of a bistable ODE](figures/demo.png)
-```
-
-![Histogram](figures/demo.png)
-
---
-
-or with HTML code for more control
-
 ```html
-<img src="figures/demo.png" alt="Histogram" width="400">
-```
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Concept Drift Survey Presentation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/white.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h2>One or two things we know about concept drift</h2>
+        <p>Fabian Hinder, Valerie Vaquet, Barbara Hammer</p>
+        <p><em>Frontiers in AI, June 2024</em></p>
+      </section>
 
-<img src="figures/demo.png" alt="Histogram" width="400">
+      <section>
+        <h2>Problem & Motivation</h2>
+        <ul>
+          <li>Automated systems operate in <strong>changing environments</strong>.</li>
+          <li><strong>Concept drift</strong>: when data distribution changes over time.</li>
+          <li>Prior work focuses on <strong>supervised detection</strong>.</li>
+          <li>But monitoring often needs <strong>unsupervised detection</strong>.</li>
+          <li>This paper surveys <strong>unsupervised methods</strong> for monitoring.</li>
+        </ul>
+      </section>
 
---
+      <section>
+        <h2>What the Paper Does</h2>
+        <ul>
+          <li>Formalizes & defines concept drift mathematically.</li>
+          <li>Reviews & categorizes unsupervised drift detection methods.</li>
+          <li>Proposes a general four-stage detection scheme.</li>
+          <li>Compares methods on synthetic data.</li>
+          <li>Provides practical guidelines.</li>
+        </ul>
+      </section>
 
-or with percentage
+      <section>
+        <h2>Methods & Framework</h2>
+        <ul>
+          <li><strong>Four-stage detection scheme:</strong></li>
+          <ol>
+            <li>Data acquisition (windowing)</li>
+            <li>Building descriptors</li>
+            <li>Computing dissimilarity</li>
+            <li>Normalization & decision</li>
+          </ol>
+          <li>Method categories:</li>
+          <ul>
+            <li>Two-sample tests</li>
+            <li>Meta-statistics</li>
+            <li>Block-based methods</li>
+            <li>Clustering-based methods</li>
+          </ul>
+        </ul>
+      </section>
 
-```html
-<img src="figures/demo.png" alt="Histogram" style="width:40%">
-```
-
-<img src="figures/demo.png" alt="Histogram" style="width:40%">
-
---
-
-You can add a caption like this
-```html
-<figure>
-  <img src="figures/demo.png" alt="Time series" style="width:70%">
-  <figcaption>Figure 1: Histogram of the solution of a bistable ODE</figcaption>
-</figure>
-```
-
-<figure>
-  <img src="figures/demo.png" alt="Time series" style="width:70%">
-  <figcaption>Figure 1: Histogram of the solution of a bistable ODE</figcaption>
-</figure>
-
----
-
-# Show a video
-
-```html
-<video src="media/video.mp4" autoplay muted loop style="width: 60%"></video>
-```
-
-<video src="media/video.mp4" autoplay muted loop style="width: 60%"></video>
-
-
----
-
-# Code blocks
-
-<pre><code class="language-python" data-trim>
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
-</code></pre>
-
-
---
-
-# Code blocks with highlighting
-
-<pre><code class="language-python" data-trim data-line-numbers="3,5-6,10">
-import numpy as np
-import matplotlib.pyplot as plt
-
-def simulate_ode(f, y0, t):
-    """Simple forward Euler ODE solver."""
-    y = np.zeros_like(t)
-    y[0] = y0
-    for i in range(1, len(t)):
-        dt = t[i] - t[i-1]
-        y[i] = y[i-1] + dt * f(t[i-1], y[i-1])
-    return y
-
-# Example usage
-f = lambda t, y: -0.5 * y
-t = np.linspace(0, 10, 100)
-y = simulate_ode(f, 1.0, t)
-
-plt.plot(t, y)
-plt.title("Exponential Decay")
-plt.xlabel("Time")
-plt.ylabel("y(t)")
-plt.grid()
-plt.show()
-</code></pre>
-
-
---
-
-<section>
-  <h3>Code blocks with animations</h3>
-
-  <div class="fragment">
-    <pre><code class="language-python" data-trim data-line-numbers>
-import numpy as np
-import matplotlib.pyplot as plt
-    </code></pre>
+      <section>
+        <h2>Results & Takeaways</h2>
+        <ul>
+          <li>Formalizes drift as statistical dependence of data & time.</li>
+          <li>Shows strengths & weaknesses of different methods.</li>
+          <li>First survey focused on monitoring (unsupervised).</li>
+          <li>Guidelines for real-world monitoring & anomaly detection.</li>
+        </ul>
+      </section>
+    </div>
   </div>
 
-  <div class="fragment">
-    <pre><code class="language-python" data-trim data-line-numbers>
-def simulate_ode(f, y0, t):
-    """Simple forward Euler ODE solver."""
-    y = np.zeros_like(t)
-    y[0] = y0
-    for i in range(1, len(t)):
-        dt = t[i] - t[i-1]
-        y[i] = y[i-1] + dt * f(t[i-1], y[i-1])
-    return y
-    </code></pre>
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize();
+  </script>
+</body>
+</html>
 
-  <div class="fragment">
-    <pre><code class="language-python" data-trim data-line-numbers>
-f = lambda t, y: -0.5 * y
-t = np.linspace(0, 10, 100)
-y = simulate_ode(f, 1.0, t)
-    </code></pre>
-  </div>
-
-  <div class="fragment">
-    <pre><code class="language-python" data-trim data-line-numbers>
-plt.plot(t, y)
-plt.title("Exponential Decay")
-plt.xlabel("Time")
-plt.ylabel("y(t)")
-plt.grid()
-plt.show()
-    </code></pre>
-  </div>
-</section>
-
-
+```
 
 ---
 
