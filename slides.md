@@ -1,7 +1,6 @@
-# One or two things we know about concept drift
+# One or two things we know about concept drift —a survey on monitoring in evolving environments. Part A: detecting concept drift
 
 **Fabian Hinder, Valerie Vaquet, Barbara Hammer**
-*Frontiers in AI, June 2024*
 
 ---
 
