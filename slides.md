@@ -11,7 +11,7 @@
 - Detecting and analyzing concept drift is crucial for automated systems in critical
  infrastructure, manufacturing, and quality control
 - Detecting anomalies and changes in sensors is essential for identifying faulty 
-productions, replacing sensors, or modifying system processing
+productions, replacing sensors or modifying system processing
 - Concept drift extends beyond data streams, appearing in time-series data and federated
  learning techniques
 - Processing drifting data streams involves 2 tasks:
@@ -70,16 +70,32 @@ over time, and a sample is analyzed within a time window
 
 - **Categories of Drift Detectors:**
   - Two-sample tests
-    - Computing a measure of dissimilarity between the two samples, such as differences 
-    in their empirical distributions or statistical properties. They help identify 
-    whether the data distribution has changed over time, signaling drift in data streams
   - Meta-statistics
-    - Combine values of several estimates to address issues such as the multiple testing problem and sub-optimal sensitivity
   - Block-based methods
-    - Do not assume a split of the data into two windows but analyze an entire data 
-    segment at once
   - Clustering-based methods
-    - Cluster time points into intervals such that the corresponding data points also form clusters, solving an optimization problem for a number of clusters
+
+--
+
+# Two-sample tests
+  - Computing a measure of dissimilarity between the two samples, such as differences 
+  in their empirical distributions or statistical properties. They help identify 
+  whether the data distribution has changed over time, signaling drift in data streams
+
+--
+
+# Meta-statistics
+  - Combine values of several estimates to address issues such as the multiple testing problem and sub-optimal sensitivity
+
+--
+
+# Block-based methods
+  - Do not assume a split of the data into two windows but analyze an entire data 
+  segment at once
+
+--
+
+# Clustering-based methods
+  - Cluster time points into intervals such that the corresponding data points also form clusters, solving an optimization problem for a number of clusters
 
 <!-- Notes:
 The authors propose a general scheme with 4 stages: windowing, describing distributions,
@@ -114,7 +130,7 @@ Provides clear guidance for practitioners.
 
 --- -->
 
-### 🦧 That is all 🦧
+# Thank You!
 
 
 
