@@ -1,3 +1,5 @@
+<!-- Use moon.css Theme -->
+
 # One or two things we know about concept drift —a survey on monitoring in evolving environments. Part A: detecting concept drift
 
 **Fabian Hinder, Valerie Vaquet, Barbara Hammer**
@@ -19,6 +21,9 @@ productions, replacing sensors or modifying system processing
 - This paper focuses on unsupervised drift detection for monitoring situations where 
 drift is expected due to sensor usage or environmental changes
 
+Note:
+    Shhh, these are your private notes 📝
+
 ---
 
 # Consept Drift in Supervised and Unsupervised Setups
@@ -32,17 +37,6 @@ drift is expected due to sensor usage or environmental changes
 ### Unsupervised Settings
 - Only virtual drift has to be considered
 - Emphasizes on the data distribution or reconstruction
-
-
-<!-- - Reviews & categorizes unsupervised drift detection methods
-- Proposes a general four-stage detection scheme
-- Compares methods on synthetic data
-- Provides practical guidelines for practitioners -->
-
-<!-- Notes: 
-Summarize the contributions:
-formal definitions, taxonomy of methods, a general detection framework, experiments, and
- guidelines for selecting methods.-->
 
 ---
 
@@ -96,11 +90,6 @@ over time, and a sample is analyzed within a time window
 # Clustering-based methods
   - Cluster time points into intervals such that the corresponding data points also form clusters, solving an optimization problem for a number of clusters
 
-<!-- Notes:
-The authors propose a general scheme with 4 stages: windowing, describing distributions,
- computing differences, and deciding if drift occurred.  
-They also categorize existing methods into 4 types based on their strategy. -->
-
 ---
 
 # Analysis of Strategies
@@ -113,21 +102,6 @@ features, data dimensionality, and the number of drift events
  separate drifting and non-drifting setups
 
 ---
-
-<!-- # Results & Takeaways
-
-- Drift is formalized as **statistical dependence between data & time**
-- Different methods have strengths & weaknesses depending on the scenario
-- First comprehensive survey focused on **unsupervised monitoring**
-- Practical guidance for monitoring & anomaly detection in real-world systems
-
-Notes:
-Highlight the main takeaway: the paper clarifies the landscape of unsupervised drift 
-detection for monitoring tasks.  
-It shows no single method is best; choice depends on the problem specifics.  
-Provides clear guidance for practitioners.
-
---- -->
 
 # Thank You!
 
