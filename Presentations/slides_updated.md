@@ -43,8 +43,18 @@ Note: This paper focuses on unsupervised drift detection for monitoring situatio
 
 # <span style="color:gold">Concept Drift</span>
 
-- Drift is classified based on temporal qualities such as abrupt, gradual, incremental,
- and recurring drift
+- Drift is classified as: 
+  - Abrupt
+  - Gradual
+  - Incremental
+  - Recurring
+
+In a data stream of labeled pairs (X, Y):
+-  Changes in the conditional distribution $D_t(Y | X)$ are referred to as 
+<span style="color:gold">real drift</span>
+-  Changes within the marginal $D_t(X)$ are known as 
+<span style="color:gold">virtual drift</span>
+
 ### <span style="color:gold">Supervised Settings</span>
 - Both real and virtual drift might be present
 - Focuses on model losses
@@ -54,15 +64,14 @@ Note: This paper focuses on unsupervised drift detection for monitoring situatio
 - Emphasizes on the data distribution or reconstruction
 
 
-<!-- - Reviews & categorizes unsupervised drift detection methods
-- Proposes a general four-stage detection scheme
-- Compares methods on synthetic data
-- Provides practical guidelines for practitioners -->
-
-<!-- Notes: 
-Summarize the contributions:
-formal definitions, taxonomy of methods, a general detection framework, experiments, and
- guidelines for selecting methods.-->
+Note: 
+- abrupt drift refers to a sudden change in distribution at a specific time referred to 
+as change point
+- changes gradually occurring over an interval signify gradual drift. 
+- During a changing period in incremental drift, samples are drawn from both
+distributions with varying probabilities. 
+- Recurring drift refers to the reappearance of past distributions, usually due to 
+seasonality
 
 ---
 
@@ -76,6 +85,10 @@ or valid when:
   - We can control the chance of false positives independent of the stream.
 - Drift detection is typically applied in a streaming setting where data points arrive 
 over time, and a sample is analyzed within a time window
+
+Note:  False Positive: Type 1 error. A valid drift detector should allow you to set and 
+bound the probability of raising a false alarm — detecting drift when in reality there 
+is none —and this bound should not depend on the particular data stream or distribution.
 
 ---
 
@@ -120,7 +133,11 @@ There are four main categories which differ in how the reference window is updat
 - sliding along the stream
 - implicit as a summary statistic using a model
 
-There also exist approaches using preprocessing such as a deep latent space embedding
+There also exist approaches using preprocessing such as a deep latent space embedding.
+
+Deep latent space embedding: Deep neural network to transform your raw data into a 
+lower-dimensional, more structured representation (latent space) — and then using that 
+representation (or embedding) as the descriptor of the data
 
 --
 
@@ -146,6 +163,10 @@ Decision trees can be contructed:
 
 neighbor- and kernel-based approaches: the information is encoded via (dis)similarity 
 matrices like the adjacency matrix or kernel matrix
+
+A kernel matrix (also called a Gram matrix) is a square matrix that contains the 
+pairwise similarities between all data points in a dataset, measured by a kernel 
+function.
 
 --
 
@@ -230,12 +251,14 @@ Note: Implementing this strategy:
  anomaly score that estimates how anomalous a data point is)
 - Density estimators, which are designed to estimate the likelihood of
 observing a sample, can be applied to detect drift
+- It is further analyzed using drift detectors which are commonly used in the supervised
+ setup and serve as a normalization (stages 3 and 4)
 
 --
 
 ### <span style="color:gold">2. Virtual-classifier-based</span>
 
-<img src="figures/virtual_classifier.png" alt="Virtual-classifier-based" width="1300" height="360">
+<img src="figures/virtual_classifier.png" alt="Virtual-classifier" width="1300" height="360">
 
 <!-- - Store all samples explicitly in two windows (stage 1)
 - Define labels according to reference or current sample: $y = -1, \text{ if } x \in S_{-}(t)$  
@@ -269,6 +292,9 @@ Note:
 - Classical statistical tests commonly focus on one-dimensional data
 - Kernel two-sample test
   - It is based on the Maximum Mean Discrepancy (MMD)
+
+MMD: It is a statistical distance between two probability distributions, based on 
+comparing their means in a high-dimensional feature space defined by a kernel function.
 
 --
 
@@ -349,7 +375,10 @@ removing the time discretization
 - It investigates the role of drift strength, the influence of drift in correlating 
 features, data dimensionality, and the number of drift events
 - The experiments use three 2-dimensional synthetic datasets with differently structured
- abrupt drift: uniform shift, Gaussian correlation flip, and uniform squares rotation
+ abrupt drift: 
+  - Uniform Shift
+  - Gaussian Correlation Flip
+  - Uniform Squares Rotation
 - ROC-AUC is used to evaluate the performance, measuring how well the obtained scores 
  separate drifting and non-drifting setups
 
