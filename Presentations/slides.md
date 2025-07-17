@@ -1,4 +1,4 @@
-<!-- Use moon.css Theme -->
+<!-- moon.css Theme -->
 
 # One or two things we know about concept drift —a survey on monitoring in evolving environments. Part A: detecting concept drift
 

@@ -1,3 +1,5 @@
+<!-- moon.css Theme -->
+
 # Presentation slides with Reveal.js
 
 Georgios Arampatzis, 2025

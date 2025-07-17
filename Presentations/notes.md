@@ -1,3 +1,5 @@
+<!-- night.css Theme -->
+
 # <span style="color:gold">Presentation slides with Reveal.js</span>
 
 Nikolaos Vlachogiannakis, 2025
