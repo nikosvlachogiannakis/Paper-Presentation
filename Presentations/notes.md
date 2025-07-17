@@ -1,6 +1,6 @@
 <!-- night.css Theme -->
 
-# <span style="color:gold">Presentation slides with Reveal.js</span>
+# <span style="color:gold">Notes</span>
 
 Nikolaos Vlachogiannakis, 2025
 
@@ -278,17 +278,25 @@ It’s a software application that provides a set of tools for programmers to wr
 
 ## <span style="color:gold">What is Poetry?</span>
 
-<span style="color:gold">Poetry</span> is a tool for managing Python projects. It helps you declare, install, and resolve dependencies, build your package, and publish it. Unlike using pip and virtualenv separately, Poetry handles both dependency management and virtual environments seamlessly.
+<span style="color:gold">Poetry</span> is a tool for managing Python projects. It helps 
+you declare, install, and resolve dependencies, build your package, and publish it. 
+Unlike using pip and virtualenv separately, Poetry handles both dependency management 
+and virtual environments seamlessly.
 
-It’s widely used because it creates a pyproject.toml file (modern Python standard), ensures reproducible builds, and makes it easy to develop and distribute Python packages.
+It’s widely used because it creates a pyproject.toml file (modern Python standard), 
+ensures reproducible builds, and makes it easy to develop and distribute Python 
+packages.
 
 --
 
 ## <span style="color:gold">TOML File</span>
 
-A <span style="color:gold">.toml</span> file (short for Tom’s Obvious, Minimal Language) is a simple configuration file format that is easy for humans to read and write.
+A <span style="color:gold">.toml</span> file (short for Tom’s Obvious, Minimal Language)
+ is a simple configuration file format that is easy for humans to read and write.
 
-In Python projects - especially when using tools like Poetry - the pyproject.toml file is used to define the project’s metadata, dependencies, build settings, and tool configurations.
+In Python projects - especially when using tools like Poetry - the pyproject.toml file 
+is used to define the project’s metadata, dependencies, build settings, and tool 
+configurations.
 
 ---
 
@@ -335,17 +343,17 @@ Use **---** to separate horizontal slides, and **--** for vertical slides:
 <pre><code class="language-markdown" data-trim>
 # Welcome
 
- ---
+&#45;&#45;&#45;
 
 ## Slide 1
 
 Some text
 
- --
+&#45;&#45;
 
 - Vertical slide 1
 
- --
+&#45;&#45;
 
 - Vertical slide 2
 </code></pre>
@@ -596,6 +604,10 @@ edit slides without touching HTML.
 presentation.
 - It can define metadata, timing, or slide-related data that JavaScript in the HTML file
  can read and use.
+
+---
+
+# <span style="color:gold">How to take screenshot and store it as PDF instead of PNG to NOT lose quality</span>
 
 ---
 
