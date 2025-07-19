@@ -1,6 +1,6 @@
-<!-- night.css Theme -->
+<!-- night_gold.css Theme -->
 
-# <span style="color:gold">Notes</span>
+# Notes
 
 Nikolaos Vlachogiannakis, 2025
 
@@ -54,11 +54,11 @@ Nikolaos Vlachogiannakis, 2025
 
 ---
 
-# <span style="color:gold">How to connect to a Remote Machine?</span>
+# How to connect to a Remote Machine?
 
 --
 
-# <span style="color:gold">With Password</span>
+# With Password
 
 <pre><code class="language-bash" data-trim>
 ssh user@remote-server
@@ -66,11 +66,11 @@ ssh user@remote-server
 
 --
 
-# <span style="color:gold">Passwordless Login</span>
+# Passwordless Login
 
 --
 
-## <span style="color:gold">1.Generate an SSH key(If you don't have one)</span>
+## 1.Generate an SSH key(If you don't have one)
 
 Locally, on your computer, open Terminal(for Windows, Git Bash):
 
@@ -82,7 +82,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 - Choose no passphrase to enable passwordless login
 
-## <span style="color:gold">2.Copy the Public Key to the Remote Server</span>
+## 2.Copy the Public Key to the Remote Server
 
 <pre><code class="language-bash" data-trim>
 ssh-copy-id user@remote-server
@@ -90,7 +90,7 @@ ssh-copy-id user@remote-server
 
 --
 
-## <span style="color:gold">3.Use SSH Config File</span>
+## 3.Use SSH Config File
 Create or edit:
 <pre><code class="language-bash" data-trim>
 ~/.ssh/config
@@ -107,7 +107,7 @@ Now you can simply run:
 ssh myserver
 </code></pre>
 
-## <span style="color:gold">4.Test the Passwordless SSH Login</span>
+## 4.Test the Passwordless SSH Login
 <pre><code class="language-bash" data-trim>
 ssh user@remote-server
 </code></pre>
@@ -115,12 +115,12 @@ You should be logged in without a password.
 
 ---
 
-# <span style="color:gold">Create a Repository on GitHub</span>
-# <span style="color:gold">& Push Changes</span>
+# Create a Repository on GitHub
+# & Push Changes
 
 --
 
-# <span style="color:gold">Manually</span>
+# Manually
 
 - Create a Repository on GitHub(either public or private) with a ReadMe file
 
@@ -140,7 +140,7 @@ git clone ssh_key
 
 --
 
-# <span style="color:gold">Using gh</span>
+# Using gh
 
 After the successful installation of gh:
 
@@ -162,7 +162,7 @@ gh repo list
 
 --
 
-# <span style="color:gold">Push changes on GitHub</span>
+# Push changes on GitHub
 
 <pre><code class="language-bash" data-trim>
 cd repository_name
@@ -194,7 +194,7 @@ Now, all the changes you made are uploaded in your repository on Github!
 
 --
 
-# Otherwise, Use <span style="color:gold">LazyGit</span>
+# Otherwise, Use LazyGit
 
 - Inside the folder you want to push, write:
 <pre><code class="language-bash" data-trim>
@@ -202,18 +202,19 @@ lazygit
 </code></pre>
 - A new window will appear where, in the upper left side it will be all the files that 
 have changes and in order to include each file in your push Press 
-<span style="color:gold">Spacebar</span>.
+<span style="color:skyblue">Spacebar</span>.
 
-- After selecting all the files we want to push, Press <span style="color:gold">c</span>
+- After selecting all the files we want to push, Press 
+<span style="color:skyblue">c</span>
  and write what changes you have made and then Press 
- <span style="color:gold">Enter</span>.
+ <span style="color:skyblue">Enter</span>.
 
-- To push these changes in your GitHub Press <span style="color:gold">Shift+P</span>
-- To Exit LazyGit Press <span style="color:gold">q</span>
+- To push these changes in your GitHub Press <span style="color:skyblue">Shift+P</span>
+- To Exit LazyGit Press <span style="color:skyblue">q</span>
 
 --
 
-# <span style="color:gold">GitHub Connection</span>
+# GitHub Connection
 
 If we want to check if GitHub is connected with our machine using ssh:
 <pre><code class="language-bash" data-trim>
@@ -226,11 +227,11 @@ Hi username!You've successfully authenticated, but GitHub does not provide shell
 
 --
 
-# <span style="color:gold">Additional Information</span>
+# Additional Information
 
-## <span style="color:gold">What is SSH?</span>
+## What is SSH?
 
-<span style="color:gold">SSH</span> (Secure Shell) is a cryptographic network protocol 
+<span style="color:skyblue">SSH (Secure Shell)</span> is a cryptographic network protocol 
 that allows you to securely connect to remote computers or servers over an unsecured 
 network. It's commonly used for accessing and managing servers, transferring files, and 
 authenticating with services like GitHub. SSH works by using a key pair: a private key 
@@ -238,33 +239,33 @@ stored on your device and a public key shared with the remote service. When you 
 SSH verifies your identity using these keys, ensuring encrypted, secure communication 
 without needing to send passwords.
 
-## <span style="color:gold">What is gh?</span>
+## What is gh?
 
-It is Github's command line interface (CLI) that can be used to manage your github 
-without leaving the command line and the keyboard.
+<span style="color:skyblue">gh</span> is Github's command line interface (CLI) that can 
+be used to manage your github without leaving the command line and the keyboard.
 
 --
 
-## <span style="color:gold">What is LazyGit?</span>
+## What is LazyGit?
 
-<span style="color:gold">Lazygit</span> is a simple, fast, terminal-based UI for Git.
+<span style="color:skyblue">Lazygit</span> is a simple, fast, terminal-based UI for Git.
 
-It lets you manage your Git repositories more easily than typing out commands — you can 
+It lets you manage your Git repositories more easily than typing out commands - you can 
 stage, commit, push, pull, resolve conflicts, and browse logs interactively, all from a 
 clean text interface.
 
 It’s especially useful when you want the power of Git without memorizing all the 
 commands, and it works entirely in your terminal without needing a graphical IDE.
 
-## <span style="color:gold">IDE(Integrated Development Environment)</span>
+## IDE(Integrated Development Environment)
 
 It’s a software application that provides a set of tools for programmers to write, test,
  and debug their code more efficiently - all in one place. Examples of IDEs: PyCharm, 
- Visual Studio, Eclipse.
+Visual Studio, Eclipse.
 
 ---
 
-# <span style="color:gold">Create a Project and use Poetry</span>
+# Create a Project and use Poetry
 
 --
 
@@ -272,13 +273,13 @@ It’s a software application that provides a set of tools for programmers to wr
 
 --
 
-# <span style="color:gold">Additional Information</span>
+# Additional Information
 
 --
 
-## <span style="color:gold">What is Poetry?</span>
+## What is Poetry?
 
-<span style="color:gold">Poetry</span> is a tool for managing Python projects. It helps 
+<span style="color:skyblue">Poetry</span> is a tool for managing Python projects. It helps 
 you declare, install, and resolve dependencies, build your package, and publish it. 
 Unlike using pip and virtualenv separately, Poetry handles both dependency management 
 and virtual environments seamlessly.
@@ -289,10 +290,11 @@ packages.
 
 --
 
-## <span style="color:gold">TOML File</span>
+## TOML File
 
-A <span style="color:gold">.toml</span> file (short for Tom’s Obvious, Minimal Language)
- is a simple configuration file format that is easy for humans to read and write.
+A <span style="color:skyblue">.toml</span> file (short for Tom’s Obvious, Minimal 
+Language) is a simple configuration file format that is easy for humans to read and 
+write.
 
 In Python projects - especially when using tools like Poetry - the pyproject.toml file 
 is used to define the project’s metadata, dependencies, build settings, and tool 
@@ -300,15 +302,15 @@ configurations.
 
 ---
 
-# <span style="color:gold">Advanced Workflow</span>
+# Advanced Workflow
 
 ---
 
-# <span style="color:gold">Reveal.js Presentation</span>
+# Reveal.js Presentation
 
 --
 
-## <span style="color:gold">1. Install Node.js</span>
+## 1. Install Node.js
 
 You need Node.js (which includes npm) installed on your system.
 
@@ -325,7 +327,7 @@ npm -v
 
 --
 
-## <span style="color:gold">2. Get a Template</span>
+## 2. Get a Template
 
 - Go to a template on GitHub
 - Click Code -> Download ZIP
@@ -334,7 +336,7 @@ npm -v
 
 --
 
-## <span style="color:gold">Editing Your Slides</span>
+## Editing Your Slides
 
 Slides are written in slides.md using Markdown.
 
@@ -360,7 +362,7 @@ Some text
 
 --
 
-# <span style="color:gold">Customizing Theme</span>
+# Customizing Theme
 
 Reveal.js themes are in the dist/theme folder.
 
@@ -370,20 +372,20 @@ To change the theme, edit index.html and modify this line:
 <link rel="stylesheet" href="dist/theme/black.css" id="theme">
 </code></pre>
 
-You can try other themes like <span style="color:gold">white.css</span>, 
-<span style="color:gold">night.css</span>, <span style="color:gold">moon.css</span>,etc.
+You can try other themes like white.css, 
+night.css, moon.css,etc.
 
 --
 
-# <span style="color:gold">Change Markdown File</span>
+# Change Markdown File
 
 Inside the file that contains the template, you can create a folder called 
-<span style="color:gold">Presentations</span> for example. There you can store all 
+<span style="color:skyblue">Presentations</span> for example. There you can store all 
 Markdown files for every presentation you make.
 
 #### To change the presentation, you can do the following:
 
-- Go to <span style="color:gold">index.html</span>
+- Go to index.html
 - Find:
 <pre><code class="language-markdown" data-trim>
 data-markdown="slides.md"
@@ -393,12 +395,12 @@ data-markdown="slides.md"
 data-markdown="Presentations/notes.md"
 </code></pre>
 
-- Now, the presentation written in the <span style="color:gold">notes.md</span> file 
+- Now, the presentation written in the notes.md file 
 will appear.
 
 --
 
-# <span style="color:gold">Load Slides Locally</span>
+# Load Slides Locally
 
 - Inside the folder, open a terminal and run:
 <pre><code class="language-bash" data-trim>
@@ -418,7 +420,7 @@ You should see your slides rendered.
 
 --
 
-# <span style="color:gold">Hosting Slides on GitHub Pages</span>
+# Hosting Slides on GitHub Pages
 
 You can publish your presentation online for free using GitHub Pages.
 
@@ -440,16 +442,16 @@ You can publish your presentation online for free using GitHub Pages.
 - Folder: / (root)
 - Click Save
 
-4. Wait 1-10 minutes. GitHub will show a <span style="color:green">green</span> message 
+4. Wait 1-10 minutes. GitHub will show a <span style="color:green">green message</span> 
 like the following:
-<pre><code class="language-markdown" data-trim>
+<pre><code class="language-markdown" data-trim style="color:green;">
 Your site is live at https://your-username.github.io/repo-name/
 </code></pre>
 
 --
 
-## <span style="color:gold">If the green message does</span> 
-## <span style="color:red">NOT</span> <span style="color:gold">appear</span>
+## If the green message does 
+## <span style="color:red">NOT</span> appear
 
 - Add a .nojekyll file(empty file with that name)
 - Make a small commit to trigger a rebuild:
@@ -462,29 +464,29 @@ git push
 
 --
 
-# <span style="color:gold">Public vs Private Repos and Ways to Share Slides</span>
+# Public vs Private Repos and Ways to Share Slides
 
 --
 
-### ✅ <span style="color:gold">Option 1: GitHub Pages (Public Repo)</span>
+### ✅ Option 1: GitHub Pages (Public Repo)
 
 - If your repository is public, GitHub Pages will host your presentation at:
 <pre><code class="language-markdown" data-trim>
 https://your-username.github.io/repo-name/
 </code></pre>
-- This is the <span style="color:green">easiest</span> and recommended way to publish 
-Reveal.js slides.
+- This is the <span style="color:green">easiest</span> and 
+<span style="color:green">recommended</span> way to publish Reveal.js slides.
 
-### 🚫 <span style="color:gold">Option 2: GitHub Pages (Private Repo)</span>
+### 🚫 Option 2: GitHub Pages (Private Repo)
 
-- GitHub Pages does <span style="color:red">not</span> work for private repos unless you
+- GitHub Pages do <span style="color:red">not</span> work for private repos unless you
  are on a GitHub Enterprise plan.
 
 - You will see a 404 or the site won’t build.
 
 --
 
-### <span style="color:blue">🛠</span> <span style="color:gold">Option 3: Local Server (for Private Sharing)</span>
+### <span style="color:blue">🛠</span> Option 3: Local Server (for Private Sharing)
 
 - You can run your slides locally with:
 <pre><code class="language-bash" data-trim>
@@ -498,7 +500,7 @@ http://localhost:8000/
 
 - This works for development or sharing over a local network.
 
-### 📤 <span style="color:gold">Option 4: Export to PDF</span>
+### 📤 Option 4: Export to PDF
 
 - Reveal.js can export slides to PDF:
 <pre><code class="language-bash" data-trim>
@@ -510,7 +512,7 @@ decktape reveal http://localhost:8000 slides.pdf
 
 --
 
-# 📦 <span style="color:gold">Managing Large Files with Git LFS</span>
+# 📦 Managing Large Files with Git LFS
 
 If you need to include large binary files in your presentation (e.g. .mp4 videos, .pdf 
 documents), it is recommended to use Git Large File Storage (LFS) instead of committing 
@@ -518,7 +520,7 @@ them directly to the repository.
 
 --
 
-## ✅ <span style="color:gold">Install Git LFS</span>
+## ✅ Install Git LFS
 
 - Ubuntu/Debian:
 <pre><code class="language-bash" data-trim>
@@ -530,7 +532,7 @@ Download and install from [git-lfs.com](https://git-lfs.com/)
 
 --
 
-### ✅ <span style="color:gold">Set Up Git LFS in Your Repo</span>
+### ✅ Set Up Git LFS in Your Repo
 
 1. Run this ince per machine:
 <pre><code class="language-bash" data-trim>
@@ -549,7 +551,7 @@ git commit -m "Add video using Git LFS"
 git push
 </code></pre>
 
-## ℹ️ <span style="color:gold">Notes</span>
+### ℹ️ Notes
 
 - GitHub’s free LFS plan includes 1 GB of storage and 1 GB/month bandwidth.
 
@@ -561,53 +563,55 @@ server) and link to them in your slides.
 
 --
 
-# <span style="color:gold">Additional Information</span>
+# Additional Information
 
 --
 
-## <span style="color:gold">What is Reveal.js?</span>
-Reveal.js is an open-source framework for creating HTML-based presentations using 
-Markdown or HTML. Instead of writing slides in a visual editor (like Keynote or 
-PowerPoint), you write them in plain text - and Reveal.js turns them into a modern, 
-interactive slideshow in the browser.
+## What is Reveal.js?
+<span style="color:skyblue">Reveal.js</span> is an open-source framework for creating 
+HTML-based presentations using Markdown or HTML. Instead of writing slides in a visual 
+editor (like Keynote or PowerPoint), you write them in plain text - and Reveal.js turns 
+them into a modern, interactive slideshow in the browser.
 
 --
 
-## <span style="color:gold">HTML File</span>
+## HTML File
 
-- The HTML file is the main entry point of the presentation.
+- The <span style="color:skyblue">HTML</span> file is the main entry point of the 
+presentation.
 - It defines the page structure, loads Reveal.js and its plugins, configures settings, 
 and optionally contains the slides directly if not using Markdown.
 
 --
 
-## <span style="color:gold">CSS File</span>
+## CSS File
 
-- The CSS file defines the styling of your presentation.
+- The <span style="color:skyblue">CSS</span> file defines the styling of your 
+presentation.
 - It customizes the look and feel - fonts, colors, layout - either by overriding the 
 default Reveal.js theme or adding new styles.
 
 --
 
-## <span style="color:gold">Markdown File</span>
+## Markdown File
 
-- The Markdown (.md) file contains the slide content written in simple, readable 
-Markdown syntax.
+- The <span style="color:skyblue">Markdown (.md)</span> file contains the slide content 
+written in simple, readable Markdown syntax.
 - It’s loaded by the HTML file (via the Reveal.js markdown plugin), making it easy to 
 edit slides without touching HTML.
 
 --
 
-## <span style="color:gold">JSON File</span>
+## JSON File
 
-- A JSON file is optional and is used to store extra data or configuration for the 
-presentation.
+- A <span style="color:skyblue">JSON</span> file is optional and is used to store extra 
+data or configuration for the presentation.
 - It can define metadata, timing, or slide-related data that JavaScript in the HTML file
  can read and use.
 
 ---
 
-# <span style="color:gold">How to take screenshot and store it as PDF instead of PNG to NOT lose quality</span>
+# How to take screenshot and store it as PDF instead of PNG to NOT lose quality
 
 ---
 
