@@ -113,6 +113,10 @@ ssh user@remote-server
 </code></pre>
 You should be logged in without a password.
 
+### Log Out
+
+Press <span style="color:skyblue">Ctrl + d</span>
+
 ---
 
 # Create a Repository on GitHub
@@ -611,7 +615,51 @@ data or configuration for the presentation.
 
 ---
 
-# How to take screenshot and store it as PDF instead of PNG to NOT lose quality
+# Store screenshot as PDF instead of PNG to NOT lose quality
+
+--
+
+## Windows
+
+### Oprion 1
+
+- Take a screenshot using <span style="color:skyblue">Win + Shift + S</span>
+- <span style="color:skyblue">Paste</span> it into Paint or Word or a 
+<span style="color:skyblue">browser</span>
+- Got to <span style="color:skyblue">File</span> > 
+<span style="color:skyblue">Print</span> > choose <span style="color:skyblue">Microsoft 
+Print to PDF</span> as the printer
+- <span style="color:skyblue">Save</span> the PDF
+
+### Option 2(PowerShell)
+
+<pre><code class="language-bash" data-trim>
+Start-Process -FilePath "screenshot.png" -Verb PrintTo -ArgumentList "Microsoft Print to PDF"
+</code></pre>
+
+--
+
+## Linux
+
+### Option 1
+
+- Use <span style="color:skyblue">PrtSc</span> or a screenshot tool like 
+<span style="color:skyblue">Flameshot</span>
+- Open the image in <span style="color:skyblue">LibreOffice Draw</span> or 
+<span style="color:skyblue">GIMP</span> or a <span style="color:skyblue">browser</span>
+- <span style="color:skyblue">Export</span> or print to PDF:
+  - In LibreOffice: <span style="color:skyblue">File</span> > 
+  <span style="color:skyblue">Export As</span> > 
+  <span style="color:skyblue">Export as PDF</span>
+  - In GIMP: <span style="color:skyblue">File</span> > 
+  <span style="color:skyblue">Export As</span> > 
+  <span style="color:skyblue">select PDF</span>
+
+### Option 2(Terminal)
+
+<pre><code class="language-bash" data-trim>
+convert screenshot.png screenshot.pdf
+</code></pre>
 
 ---
 
@@ -741,7 +789,7 @@ data or configuration for the presentation.
 
 --
 
-## 🌿 Git Essentials
+## 🌿 Git Essentials - Part 1
 | Command | Description |
 | --- | --- |
 | git init | Initialize a new Git repository |
@@ -757,6 +805,13 @@ data or configuration for the presentation.
 | git diff branch1 branch2 | Shows changes between branches |
 | git commit -m 'msg' | Commit staged changes with message |
 | git commit --amend | Edit and replace the most recent commit. |
+
+--
+
+## 🌿 Git Essentials - Part 2
+
+| Command | Description |
+| --- | --- |
 | git log | View commit history |
 | git branch | List branches |
 | git checkout <branch> | Switch to branch |
