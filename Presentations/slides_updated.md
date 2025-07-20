@@ -1,27 +1,27 @@
 <!-- night.css Theme -->
 
-# <span style="color:gold;">One or two things we know about concept drift — a survey on monitoring in evolving environments. Part A: detecting concept drift</span>
+# <span style="color:skyblue;">One or two things we know about concept drift — a survey on monitoring in evolving environments. Part A: detecting concept drift</span>
 
 **Fabian Hinder, Valerie Vaquet, Barbara Hammer**
 
 ---
 
-# <span style="color:gold">Introduction</span>
+# <span style="color:skyblue">Introduction</span>
 
-- **<span style="color:gold">Concept drift</span>**: when data distribution changes over
+- **<span style="color:skyblue">Concept drift</span>**: when data distribution changes over
  time
 - Analyzing concept drift is crucial for automated systems
 
 - Detecting anomalies is essential for identifying faulty productions
-- Drift is studied in <span style="color:gold">stream setups</span>
+- Drift is studied in <span style="color:skyblue">stream setups</span>
 - Concept drift appears in time-series data
 - Processing drifting data streams involves 2 tasks:
-  - <span style="color:gold">Online(or stream) learning</span> for predictive tasks
+  - <span style="color:skyblue">Online(or stream) learning</span> for predictive tasks
 
-  - <span style="color:gold">Monitoring systems</span> for unexpected behavior
+  - <span style="color:skyblue">Monitoring systems</span> for unexpected behavior
 
 Note: 
-- <span style="color:gold">stream setups</span>: where changes in the underlying 
+- <span style="color:skyblue">stream setups</span>: where changes in the underlying 
 data distribution necessitate model adaptation or alerting a human operator 
 for corrective action.
 
@@ -41,7 +41,7 @@ Note: This paper focuses on unsupervised drift detection for monitoring situatio
 
 ---
 
-# <span style="color:gold">Concept Drift</span>
+# <span style="color:skyblue">Concept Drift</span>
 
 - Drift is classified as: 
   - Abrupt
@@ -51,15 +51,15 @@ Note: This paper focuses on unsupervised drift detection for monitoring situatio
 
 In a data stream of labeled pairs (X, Y):
 -  Changes in the conditional distribution $D_t(Y | X)$ are referred to as 
-<span style="color:gold">real drift</span>
+<span style="color:skyblue">real drift</span>
 -  Changes within the marginal $D_t(X)$ are known as 
-<span style="color:gold">virtual drift</span>
+<span style="color:skyblue">virtual drift</span>
 
-### <span style="color:gold">Supervised Settings</span>
+### <span style="color:skyblue">Supervised Settings</span>
 - Both real and virtual drift might be present
 - Focuses on model losses
 
-### <span style="color:gold">Unsupervised Settings</span>
+### <span style="color:skyblue">Unsupervised Settings</span>
 - Only virtual drift has to be considered
 - Emphasizes on the data distribution or reconstruction
 
@@ -75,7 +75,7 @@ seasonality
 
 ---
 
-# <span style="color:gold">Drift Detection Setup</span>
+# <span style="color:skyblue">Drift Detection Setup</span>
 
 - Drift detectors are decision algorithms on data-time-pairs that determine whether 
 there is drift
@@ -92,13 +92,13 @@ is none —and this bound should not depend on the particular data stream or dis
 
 ---
 
-# <span style="color:gold">General Scheme for Drift Detection</span>
+# <span style="color:skyblue">General Scheme for Drift Detection</span>
 
 <div style="display: flex; gap: 0em; text-align: left;">
 
 <div style="flex: 1;">
 
-**<span style="color:gold">Four-stages:</span>**
+**<span style="color:skyblue">Four-stages:</span>**
   1. Data acquisition (sliding windows)
   2. Building descriptors
   3. Computing dissimilarity
@@ -114,12 +114,12 @@ is none —and this bound should not depend on the particular data stream or dis
 
 --
 
-# <span style="color:gold">Stage 1: Data acquisition</span>
+# <span style="color:skyblue">Stage 1: Data acquisition</span>
 
 - **Input:** Data Stream  
 - **Output:** Windows of data samples
 
-### <span style="color:gold">Types of Windows</span>
+### <span style="color:skyblue">Types of Windows</span>
 
 <img src="figures/window_types.png" alt="Types of Windows" style="width:65%">
 
@@ -141,17 +141,17 @@ representation (or embedding) as the descriptor of the data
 
 --
 
-# <span style="color:gold">Stage 2: Building a Descriptor</span>
+# <span style="color:skyblue">Stage 2: Building a Descriptor</span>
 
 - **Input:** Windows of data samples  
 - **Output:** Possibly smoothed descriptor of windows
 
-### <span style="color:gold">Possible Descriptors</span>
+### <span style="color:skyblue">Possible Descriptors</span>
 
 - grid- or tree-based binnings
 - neighbor-, model- and kernel-based approaches
 
-Note: The <span style="color:gold">goal</span> of the second stage is to provide a 
+Note: The <span style="color:skyblue">goal</span> of the second stage is to provide a 
 possibly smoothed descriptor of the data distribution in the window obtained in stage 1.
 
 Binnings can be considered as one of the simplest strategies  
@@ -170,12 +170,12 @@ function.
 
 --
 
-# <span style="color:gold">Stage 3: Computing dissimilarity</span>
+# <span style="color:skyblue">Stage 3: Computing dissimilarity</span>
 
 - **Input:** Descriptor of windows  
 - **Output:** Dissimilarity score
 
-# <span style="color:gold">Stage 4: Normalization</span>
+# <span style="color:skyblue">Stage 4: Normalization</span>
 
 - **Input:** Dissimilarity Score 
 - **Output:** Normalized Dissimilarity
@@ -213,13 +213,13 @@ normalized scales are accuracy or the ROC-AUC.
 
 ---
 
-# <span style="color:gold">Categories of Drift Detectors</span>
+# <span style="color:skyblue">Categories of Drift Detectors</span>
 
 <img src="figures/drift_det_types.png" alt="Types of Windows" style="width:100%">
 
 --
 
-# <span style="color:gold">Two-sample Analysis</span>
+# <span style="color:skyblue">Two-sample Analysis</span>
 
 - Split a sample $S(t)$ into two samples $S_{-}(t)$ and $S_{+}(t)$
 - Apply the test to those samples
@@ -235,9 +235,9 @@ data distribution has changed over time, signaling drift in data streams
 
 --
 
-## <span style="color:gold">Testing Procedures</span>
+## <span style="color:skyblue">Testing Procedures</span>
 
-### <span style="color:gold">1. Loss-based Approach</span>
+### <span style="color:skyblue">1. Loss-based Approach</span>
 
 - Machine learning models evaluate the similarity of new to existing samples
 - Unsupervised
@@ -256,7 +256,7 @@ observing a sample, can be applied to detect drift
 
 --
 
-### <span style="color:gold">2. Virtual-classifier-based</span>
+### <span style="color:skyblue">2. Virtual-classifier-based</span>
 
 <img src="figures/virtual_classifier.png" alt="Virtual-classifier" width="1300" height="360">
 
@@ -278,11 +278,11 @@ data are necessary
 
 --
 
-#### <span style="color:gold">3. Statistical-test-based</span>
+#### <span style="color:skyblue">3. Statistical-test-based</span>
 
-- <span style="color:gold">Kolmogorov-Smirnov Test</span>
+- <span style="color:skyblue">Kolmogorov-Smirnov Test</span>
 <img src="figures/Statist_test.png" alt="Statistical-test-based" width="1300" height="360">
-- <span style="color:gold">Kernel two-sample test</span>
+- <span style="color:skyblue">Kernel two-sample test</span>
   - Use raw data (Stage 1)
   - Descriptor is given by kernel matrix K (Stage 2)
   - Score is given by the Maximum Mean Discrepancy (Stage 3)
@@ -298,15 +298,15 @@ comparing their means in a high-dimensional feature space defined by a kernel fu
 
 --
 
-# <span style="color:gold">Meta-statistics</span>
+# <span style="color:skyblue">Meta-statistics</span>
   - Combine values of several estimates to address issues such as the multiple testing 
   problem and sub-optimal sensitivity and get better results
 
 --
 
-# <span style="color:gold">Meta-Statistic-Based Drift Detectors</span>
+# <span style="color:skyblue">Meta-Statistic-Based Drift Detectors</span>
 
-- <span style="color:gold">1. AdWin (ADaptive WINdowing)</span>
+- <span style="color:skyblue">1. AdWin (ADaptive WINdowing)</span>
 <img src="figures/AdWin.png" alt="AdWin" width="1300" height="390">
 
 Note: Stands for ADaptive WINdowing and is one of the most popular algorithms in 
@@ -315,7 +315,7 @@ input to estimate the actual change point
 
 --
 
-- <span style="color:gold">2. ShapeDD (Shape Drift Detector)</span>
+- <span style="color:skyblue">2. ShapeDD (Shape Drift Detector)</span>
 
 Focuses on the discrepancy of two consecutive time windows
 
@@ -324,13 +324,13 @@ Focuses on the discrepancy of two consecutive time windows
 
 --
 
-# <span style="color:gold">Block-based methods</span>
+# <span style="color:skyblue">Block-based methods</span>
   - Do not assume a split of the data into two windows but analyze an entire data 
   segment at once
 
 --
 
-# <span style="color:gold">1. Independence-test-based</span>
+# <span style="color:skyblue">1. Independence-test-based</span>
 
 - Dynamic Adaptive Window Independence Drift Detection (DAWIDD) is derived from the 
 formulation of concept drift as statistical dependence of data X and time T and thus 
@@ -345,7 +345,7 @@ drift-detecting.
 
 --
 
-# <span style="color:gold">2. Clustering-based</span>
+# <span style="color:skyblue">2. Clustering-based</span>
   - Cluster time points into intervals such that the corresponding data points also form
    clusters, solving an optimization problem for a number of clusters
 
@@ -356,13 +356,13 @@ They also categorize existing methods into 4 types based on their strategy. -->
 
 --
 
-# <span style="color:gold">3. Model-based</span>
+# <span style="color:skyblue">3. Model-based</span>
 
 - Construct new kernels using machine learning models
 - Moment Trees are used to construct such kernels
 
 Note: 
-- <span style="color:gold">Moment Trees</span>: Random Forests with a modified loss 
+- <span style="color:skyblue">Moment Trees</span>: Random Forests with a modified loss 
 function that is designed for conditional density estimation
 - This way, we obtain model-based block-based approaches that can be thought of as an 
 extension of the virtual-classifier-based two-window approaches to continuous time by 
@@ -370,7 +370,7 @@ removing the time discretization
 
 ---
 
-# <span style="color:gold">Analysis of Strategies</span>
+# <span style="color:skyblue">Analysis of Strategies</span>
 
 - It investigates the role of drift strength, the influence of drift in correlating 
 features, data dimensionality, and the number of drift events
@@ -399,7 +399,7 @@ Provides clear guidance for practitioners.
 
 --- -->
 
-# <span style="color:gold">Thank You!</span>
+# <span style="color:skyblue">Thank You!</span>
 
 
 

@@ -231,13 +231,13 @@ Hi username!You've successfully authenticated, but GitHub does not provide shell
 
 ## What is SSH?
 
-<span style="color:skyblue">SSH (Secure Shell)</span> is a cryptographic network protocol 
-that allows you to securely connect to remote computers or servers over an unsecured 
-network. It's commonly used for accessing and managing servers, transferring files, and 
-authenticating with services like GitHub. SSH works by using a key pair: a private key 
-stored on your device and a public key shared with the remote service. When you connect, 
-SSH verifies your identity using these keys, ensuring encrypted, secure communication 
-without needing to send passwords.
+<span style="color:skyblue">SSH (Secure Shell)</span> is a cryptographic network 
+protocol that allows you to securely connect to remote computers or servers over an 
+unsecured network. It's commonly used for accessing and managing servers, transferring 
+files, and authenticating with services like GitHub. SSH works by using a key pair: a 
+private key stored on your device and a public key shared with the remote service. When 
+you connect, SSH verifies your identity using these keys, ensuring encrypted, secure 
+communication without needing to send passwords.
 
 ## What is gh?
 
@@ -279,10 +279,10 @@ Visual Studio, Eclipse.
 
 ## What is Poetry?
 
-<span style="color:skyblue">Poetry</span> is a tool for managing Python projects. It helps 
-you declare, install, and resolve dependencies, build your package, and publish it. 
-Unlike using pip and virtualenv separately, Poetry handles both dependency management 
-and virtual environments seamlessly.
+<span style="color:skyblue">Poetry</span> is a tool for managing Python projects. It 
+helps you declare, install, and resolve dependencies, build your package, and publish 
+it. Unlike using pip and virtualenv separately, Poetry handles both dependency 
+management and virtual environments seamlessly.
 
 It’s widely used because it creates a pyproject.toml file (modern Python standard), 
 ensures reproducible builds, and makes it easy to develop and distribute Python 
@@ -612,6 +612,163 @@ data or configuration for the presentation.
 ---
 
 # How to take screenshot and store it as PDF instead of PNG to NOT lose quality
+
+---
+
+# Cheat Sheet
+
+--
+
+## 📁 File & Directory Management
+| Command | Description |
+| --- | --- |
+| ls | List files in current directory |
+| ls -la | List all files with details |
+| cd folder_name | Change directory |
+| cd | Go to home directory |
+| cd .. | Go up one directory |
+| cd - | Go to previous directory |
+| mkdir folder_name | Create a new folder |
+| rm file | Delete file |
+| rm -rf folder | Force delete folder and contents |
+| cp source dest/ | Copy file/folder |
+| mv old new | Move or rename file/folder |
+| touch file.txt | Create empty file |
+
+--
+
+## 📄 File Viewing & Editing
+| Command | Description |
+| --- | --- |
+| cat file.txt | Show file contents |
+| less file.txt | Scrollable view of file |
+| nano file.txt | Edit file in nano editor |
+| code . | Open folder in VS Code (if installed) |
+
+--
+
+## 🔍 Search & Navigation
+| Command | Description |
+| --- | --- |
+| find . -name '*.py' | Find all `.py` files |
+| grep "pattern" file.txt | Search for text in a file |
+| grep -r "text" folder/ | Recursive search in folder |
+| pwd | Show current directory |
+| history | View command history |
+
+--
+
+## 🧰 System Utilities
+| Command | Description |
+| --- | --- |
+| whoami | Show current user |
+| df -h | Show disk usage |
+| free -h | Show memory usage |
+| top / htop | Process monitor (install `htop`) |
+| uptime | System uptime |
+
+--
+
+## 📦 Package Management (APT)
+| Command | Description |
+| --- | --- |
+| sudo apt update | Refresh package index |
+| sudo apt upgrade | Upgrade installed packages |
+| sudo apt install pkgname | Install package |
+| sudo apt remove pkgname | Remove package |
+
+--
+
+## 🐍 Python & pyenv
+| Command | Description |
+| --- | --- |
+| python3 --version | Show system Python version |
+| pyenv install 3.11.13 | Install specific Python version |
+| pyenv global 3.11.13 | Set global Python version |
+| pyenv local 3.11.13 | Set version only for current folder |
+| pyenv versions | List installed versions |
+| pyenv which python | Show path to Python binary |
+| poetry init | Create new Poetry project |
+| poetry env use $(pyenv which python) | Link Poetry to pyenv Python |
+| poetry env list | Lists all exiting environments |
+| poetry env remove <env> | Removes poetry environment |
+| poetry add <package> | Add dependency |
+| poetry install | Install all libraries in toml |
+| poetry shell | Activate project virtual environment |
+
+--
+
+## 🔐 SSH & Remote Access
+| Command | Description |
+| --- | --- |
+| ssh user@host | Connect to remote machine |
+| ssh -i ~/.ssh/id_rsa user@host | Use specific SSH key |
+| ssh-keygen -t ed25519 | Generate new SSH key |
+| cat ~/.ssh/id_ed25519.pub | Show public key to add to GitHub/remote |
+| scp file user@host:/remote/path | Copy file to remote server |
+| scp user@host:/remote/file ./local/ | Copy file from remote server |
+
+--
+
+## 📡 FTP & File Transfer
+
+| Command | Description |
+|--------|-------------|
+| ftp host | Connect to an FTP server |
+| sftp user@host | Connect securely via SFTP |
+| scp file user@host:/path | Copy file to remote server |
+| scp user@host:/file ./ | Copy file from remote server |
+| rsync -avz file user@host:/path | Sync file/directory over SSH |
+| rsync -avz user@host:/path ./ | Download file/directory via rsync |
+| mput *.txt | Upload multiple files in FTP |
+| mget *.txt | Download multiple files in FTP |
+| put file.txt | Upload file in FTP |
+| get file.txt | Download file in FTP |
+| bye | Exit FTP session |
+
+--
+
+## 🧠 Shortcuts
+| Command | Description |
+| --- | --- |
+| Ctrl + C | Cancel current command |
+| Ctrl + D | Exit terminal or virtual env |
+| Ctrl + L | Clear terminal screen |
+| ↑ / ↓ | Navigate command history |
+| Tab | Autocomplete files or commands |
+| !! | Repeat last command |
+| Ctrl+ | Move by word instead of character |
+
+--
+
+## 🌿 Git Essentials
+| Command | Description |
+| --- | --- |
+| git init | Initialize a new Git repository |
+| git config --global user.name/email | Set global Git username/email |
+| git clone <url> | Clone a remote repository |
+| git status | Check status of working directory |
+| git add <file> | Stage changes for commit |
+| git add . | Stage all changes |
+| git diff | Shows unstaged changes |
+| git diff --staged | Shows staged changes |
+| git diff HEAD | Shows changes since last commit |
+| git diff commit1 commit2 | Shows changes between commits |
+| git diff branch1 branch2 | Shows changes between branches |
+| git commit -m 'msg' | Commit staged changes with message |
+| git commit --amend | Edit and replace the most recent commit. |
+| git log | View commit history |
+| git branch | List branches |
+| git checkout <branch> | Switch to branch |
+| git checkout -b <branch> | Create and switch to new branch |
+| git merge <branch> | Merge branch into current |
+| git pull | Fetch and merge from remote |
+| git push | Push local commits to remote |
+| git remote -v | List remote connections |
+| git restore  <file> | Restore a file to its last commited state |
+| git reset --soft HEAD~1 | Undo the last commit, keep changes staged |
+| git stash | Temporarily save uncommited changes |
+| git stash pop | Apply and remove the most recent stash |
 
 ---
 
