@@ -1,15 +1,17 @@
-<!-- night.css Theme -->
+<!-- night_gold.css Theme -->
 
-# <span style="color:skyblue;">One or two things we know about concept drift — a survey on monitoring in evolving environments. Part A: detecting concept drift</span>
+# One or two things we know about concept drift — a survey on monitoring in evolving environments. Part A: detecting concept drift
 
 **Fabian Hinder, Valerie Vaquet, Barbara Hammer**
 
+**Nikos Vlachogiannakis, 2025**
+
 ---
 
-# <span style="color:skyblue">Introduction</span>
+# Introduction
 
-- **<span style="color:skyblue">Concept drift</span>**: when data distribution changes over
- time
+- **<span style="color:skyblue">Concept drift</span>**: when data distribution changes 
+over time
 - Analyzing concept drift is crucial for automated systems
 
 - Detecting anomalies is essential for identifying faulty productions
@@ -25,8 +27,8 @@ Note:
 data distribution necessitate model adaptation or alerting a human operator 
 for corrective action.
 
-- Time series: Such drift usually manifests itself as trends, and its absence is known as 
-stationarity
+- Time series: Such drift usually manifests itself as trends, and its absence is known 
+as stationarity
 
 - Drift must be taken into account in transfer learning, a deep learning technique in 
 which the model is pre-trained on a similar task with a more extensive dataset before 
@@ -34,32 +36,34 @@ being fine-tuned on the target task using a limited dataset.
 
 --
 
-<img src="figures/paper_focus.png" alt="Drift Analysis Categorization" style="width:60%">
+<img src="figures/paper_focus_dark.png" alt="Drift Analysis Categorization" style="width:60%">
 
 Note: This paper focuses on unsupervised drift detection for monitoring situations where
  drift is expected due to sensor usage or environmental changes
 
 ---
 
-# <span style="color:skyblue">Concept Drift</span>
+# Concept Drift
 
-- Drift is classified as: 
-  - Abrupt
-  - Gradual
-  - Incremental
-  - Recurring
+<img src="figures/drift_classes_dark.png" alt="Drift Classification">
 
-In a data stream of labeled pairs (X, Y):
--  Changes in the conditional distribution $D_t(Y | X)$ are referred to as 
-<span style="color:skyblue">real drift</span>
--  Changes within the marginal $D_t(X)$ are known as 
-<span style="color:skyblue">virtual drift</span>
+--
 
-### <span style="color:skyblue">Supervised Settings</span>
+-  <span style="color:skyblue">Real Drift</span>: Changes in the conditional 
+distribution $D_t(Y | X)$
+
+- <span style="color:skyblue">Virtual Drift</span>: Changes within the marginal 
+distribution $D_t(X)$ 
+
+<img src="figures/real_virtual_drift_dark.png" alt="Real & Virtual Drift">
+
+--
+
+# Supervised Settings
 - Both real and virtual drift might be present
 - Focuses on model losses
 
-### <span style="color:skyblue">Unsupervised Settings</span>
+# Unsupervised Settings
 - Only virtual drift has to be considered
 - Emphasizes on the data distribution or reconstruction
 
@@ -73,9 +77,15 @@ distributions with varying probabilities.
 - Recurring drift refers to the reappearance of past distributions, usually due to 
 seasonality
 
+Concept drift can be subdivided into two types: virtual drift and real drift. Virtual 
+drift can be defined as a change in the unconditional probability distribution 
+P(x) and real drift can be defined as a change in the conditional probabilities P(y|x). 
+They may occur separately or simultaneously and may have different impacts on the 
+classifier performance.
+
 ---
 
-# <span style="color:skyblue">Drift Detection Setup</span>
+# Drift Detection Setup
 
 - Drift detectors are decision algorithms on data-time-pairs that determine whether 
 there is drift
@@ -92,7 +102,7 @@ is none —and this bound should not depend on the particular data stream or dis
 
 ---
 
-# <span style="color:skyblue">General Scheme for Drift Detection</span>
+# General Scheme for Drift Detection
 
 <div style="display: flex; gap: 0em; text-align: left;">
 
@@ -106,22 +116,22 @@ is none —and this bound should not depend on the particular data stream or dis
 
 </div>
 
-<div >
+<div>
 
 </div>
-<img src="figures/4_stages.png" alt="Types of Windows" width="350" height="600">
+<img src="figures/4_stages_dark.png" alt="4-Stage Scheme" width="350" height="600">
 </div>
 
 --
 
-# <span style="color:skyblue">Stage 1: Data acquisition</span>
+# Stage 1: Data acquisition
 
 - **Input:** Data Stream  
 - **Output:** Windows of data samples
 
-### <span style="color:skyblue">Types of Windows</span>
+### Types of Windows
 
-<img src="figures/window_types.png" alt="Types of Windows" style="width:65%">
+<img src="figures/window_types_dark.png" alt="Types of Windows">
 
 Note: Output: for example, one reference window and one containing the most recent 
 samples
@@ -141,12 +151,12 @@ representation (or embedding) as the descriptor of the data
 
 --
 
-# <span style="color:skyblue">Stage 2: Building a Descriptor</span>
+# Stage 2: Building a Descriptor
 
 - **Input:** Windows of data samples  
 - **Output:** Possibly smoothed descriptor of windows
 
-### <span style="color:skyblue">Possible Descriptors</span>
+### Possible Descriptors
 
 - grid- or tree-based binnings
 - neighbor-, model- and kernel-based approaches
@@ -170,12 +180,12 @@ function.
 
 --
 
-# <span style="color:skyblue">Stage 3: Computing dissimilarity</span>
+# Stage 3: Computing dissimilarity
 
 - **Input:** Descriptor of windows  
 - **Output:** Dissimilarity score
 
-# <span style="color:skyblue">Stage 4: Normalization</span>
+# Stage 4: Normalization
 
 - **Input:** Dissimilarity Score 
 - **Output:** Normalized Dissimilarity
@@ -213,13 +223,13 @@ normalized scales are accuracy or the ROC-AUC.
 
 ---
 
-# <span style="color:skyblue">Categories of Drift Detectors</span>
+# Categories of Drift Detectors
 
-<img src="figures/drift_det_types.png" alt="Types of Windows" style="width:100%">
+<img src="figures/drift_det_types_dark.png" alt="Types of Windows">
 
 --
 
-# <span style="color:skyblue">Two-sample Analysis</span>
+# Two-sample Analysis
 
 - Split a sample $S(t)$ into two samples $S_{-}(t)$ and $S_{+}(t)$
 - Apply the test to those samples
@@ -235,9 +245,9 @@ data distribution has changed over time, signaling drift in data streams
 
 --
 
-## <span style="color:skyblue">Testing Procedures</span>
+## Testing Procedures
 
-### <span style="color:skyblue">1. Loss-based Approach</span>
+### 1. Loss-based Approach
 
 - Machine learning models evaluate the similarity of new to existing samples
 - Unsupervised
@@ -256,13 +266,13 @@ observing a sample, can be applied to detect drift
 
 --
 
-### <span style="color:skyblue">2. Virtual-classifier-based</span>
+### 2. Virtual-classifier-based
 
-<img src="figures/virtual_classifier.png" alt="Virtual-classifier" width="1300" height="360">
+<img src="figures/virtual_classifier_dark.png" alt="Virtual-classifier">
 
 <!-- - Store all samples explicitly in two windows (stage 1)
-- Define labels according to reference or current sample: $y = -1, \text{ if } x \in S_{-}(t)$  
-$y = 1, \text{ if } x \in S_{+}(t)$
+- Define labels according to reference or current sample: 
+$y = -1, \text{ if } x \in S_{-}(t)$  $y = 1, \text{ if } x \in S_{+}(t)$
 - Use that to train a model (stage 2)
 - The test score then serves as a drift score (stage 3) which is commonly a normalized 
 score (stage 4) -->
@@ -278,10 +288,10 @@ data are necessary
 
 --
 
-#### <span style="color:skyblue">3. Statistical-test-based</span>
+#### 3. Statistical-test-based
 
 - <span style="color:skyblue">Kolmogorov-Smirnov Test</span>
-<img src="figures/Statist_test.png" alt="Statistical-test-based" width="1300" height="360">
+<img src="figures/Statist_test_dark.png" alt="Statistical-test-based">
 - <span style="color:skyblue">Kernel two-sample test</span>
   - Use raw data (Stage 1)
   - Descriptor is given by kernel matrix K (Stage 2)
@@ -298,16 +308,16 @@ comparing their means in a high-dimensional feature space defined by a kernel fu
 
 --
 
-# <span style="color:skyblue">Meta-statistics</span>
+# Meta-statistics
   - Combine values of several estimates to address issues such as the multiple testing 
   problem and sub-optimal sensitivity and get better results
 
 --
 
-# <span style="color:skyblue">Meta-Statistic-Based Drift Detectors</span>
+# Meta-Statistic-Based Drift Detectors
 
 - <span style="color:skyblue">1. AdWin (ADaptive WINdowing)</span>
-<img src="figures/AdWin.png" alt="AdWin" width="1300" height="390">
+<img src="figures/AdWin_dark.png" alt="AdWin">
 
 Note: Stands for ADaptive WINdowing and is one of the most popular algorithms in 
 supervised drift detection. It takes individual scores like model losses or p-values as 
@@ -319,18 +329,17 @@ input to estimate the actual change point
 
 Focuses on the discrepancy of two consecutive time windows
 
-<img src="figures/ShapeDD.png" alt="ShapeDD" width="1300" height="390">
-
+<img src="figures/ShapeDD_dark.png" alt="ShapeDD">
 
 --
 
-# <span style="color:skyblue">Block-based methods</span>
+# Block-based methods
   - Do not assume a split of the data into two windows but analyze an entire data 
   segment at once
 
 --
 
-# <span style="color:skyblue">1. Independence-test-based</span>
+# 1. Independence-test-based
 
 - Dynamic Adaptive Window Independence Drift Detection (DAWIDD) is derived from the 
 formulation of concept drift as statistical dependence of data X and time T and thus 
@@ -345,7 +354,7 @@ drift-detecting.
 
 --
 
-# <span style="color:skyblue">2. Clustering-based</span>
+# 2. Clustering-based
   - Cluster time points into intervals such that the corresponding data points also form
    clusters, solving an optimization problem for a number of clusters
 
@@ -356,7 +365,7 @@ They also categorize existing methods into 4 types based on their strategy. -->
 
 --
 
-# <span style="color:skyblue">3. Model-based</span>
+# 3. Model-based
 
 - Construct new kernels using machine learning models
 - Moment Trees are used to construct such kernels
@@ -370,17 +379,68 @@ removing the time discretization
 
 ---
 
-# <span style="color:skyblue">Analysis of Strategies</span>
+# Analysis of Strategies
 
 - It investigates the role of drift strength, the influence of drift in correlating 
 features, data dimensionality, and the number of drift events
-- The experiments use three 2-dimensional synthetic datasets with differently structured
- abrupt drift: 
+- ROC-AUC is used to evaluate the performance, measuring how well the obtained scores 
+ separate drifting and non-drifting setups
+
+--
+
+# Datasets
+
+<img src="figures/datasets_dark.png" alt="Datasets">
+
+- 2-dimensional synthetic datasets with differently structured abrupt drift:
   - Uniform Shift
   - Gaussian Correlation Flip
   - Uniform Squares Rotation
-- ROC-AUC is used to evaluate the performance, measuring how well the obtained scores 
- separate drifting and non-drifting setups
+
+Note:
+Illustration of used datasets (default parameters, original size). Concepts are 
+color-coded (Before drift: blue/yellow, after drift: green/purple)
+
+--
+
+# Methods
+
+We make use of D34 (used model: Logistic Regression, Random
+Forest), KS, MMD, ShapeDD, KCpD,5 and DAWIDD. For MMD,
+ShapeDD, KCpD, and DAWIDD, we used the RBF kernel and 2,500
+permutations. This way we cover every major type and sub-type
+(see Section 5).
+For KCpD, we use the extension proposed in Arlot et al. (2019)
+and choose the smallest α-value to detect a drift as a score. All other
+methods provide a native score.
+The stream is split into chunks/windows of 150 and 250
+samples with 100 samples overlapping. Two-sample (split point is
+midpoint) and block-based approaches are applied to each chunk.
+Meta-statistic approaches are applied to the stream; then, the
+chunk-wise minimum of the score is taken.
+
+--
+
+# Evaluation
+
+We run each setup 500 times. The performance is evaluated
+using the ROC-AUC which measures how well the obtained scores
+separate the drifting and non-drifting setups. The ROC-AUC is
+1 if the largest score without drift is smaller than the smallest
+score with, it is 0.5 if the alignment is random. Thus, the ROC-
+AUC provides a scale-invariant upper bound on the performance
+of every concrete threshold. Furthermore, the ROC-AUC is not
+affected by class imbalance and thus a particularly good choice as
+the number of chunks with and without drift is not the same for
+most setups.
+
+---
+
+# Results
+
+--
+
+
 
 ---
 
@@ -399,7 +459,4 @@ Provides clear guidance for practitioners.
 
 --- -->
 
-# <span style="color:skyblue">Thank You!</span>
-
-
-
+# Thank You!
