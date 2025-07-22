@@ -119,12 +119,12 @@ Press <span style="color:skyblue">Ctrl + d</span>
 
 ---
 
-# Create a Repository on GitHub
+# Create a Repository on GitHub (3 Options)
 # & Push Changes
 
 --
 
-# Manually
+# 1. Create a repo on GitHub and clone it locally
 
 - Create a Repository on GitHub(either public or private) with a ReadMe file
 
@@ -136,7 +136,8 @@ mkdir folder_name
 <pre><code class="language-bash" data-trim>
 cd folder_name
 </code></pre>
-- Copy the SSH key(ssh_key) from your repository in GitHub:
+- Copy the link of the SSH key(ssh_key) from your repository in GitHub and write the 
+following in terminal:
 <pre><code class="language-bash" data-trim>
 git clone ssh_key
 </code></pre>
@@ -144,10 +145,32 @@ git clone ssh_key
 
 --
 
-# Using gh
+# 2. Create a repo locally and push to GitHub
 
-After the successful installation of gh:
+- Go to GitHub and create a repo. Name it the same as your local repo and do not create 
+a README.md (you already have one locally). You want your repo to be completely empty.
+- Once the the repo is created, go to Code → SSH and copy the repo SSH link.
+- Locally, on your cmd/bash do:
+<pre><code class="language-bash" data-trim>
+git remote add origin ssh_link-you-copied
+git branch -M main
+git push -u origin main
+</code></pre>
 
+Your commits should be pushed to GitHub and your local repo is connected to the GitHub 
+repo.
+
+--
+
+# 3. Using GitHub CLI (gh)
+
+The installer, after successful installation of gh(install shell repo and gh will be installed too), asks for a token. Follow the link and create a token with the proposed permissions. After this action 
+you can use gh to do things in Github. The next step creates a new ssh key and uploads 
+it to Github using the gh tool. Instead of copying the contents of the pub file, going 
+to Github settings and creating a new key entry, this is done automatically using gh.
+
+- Connect it to you GitHub with 
+<code class="language-bash" data-trim>gh auth login</code> and follow the promts
 - To create a new repo in the current folder, do:
 <pre><code class="language-bash" data-trim>
 git init
@@ -215,6 +238,18 @@ have changes and in order to include each file in your push Press
 
 - To push these changes in your GitHub Press <span style="color:skyblue">Shift+P</span>
 - To Exit LazyGit Press <span style="color:skyblue">q</span>
+
+--
+
+# Important Note
+
+- When you have large files(e.g. .mp4 files) that are stored in git-lfs and try to clone
+ a repository from GitHub, you have to run 
+<code class="language-bash " data-trim style="color:green;">git lfs pull</code> in 
+rder to get the actual video and not a pointer file to it.
+
+- Otherwise, if you want to replace the video, make sure to do it before running git 
+add, using a proper .mp4 file (e.g., downloaded from the web)
 
 --
 

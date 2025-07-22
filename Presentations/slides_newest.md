@@ -4,7 +4,7 @@
 
 **Fabian Hinder, Valerie Vaquet, Barbara Hammer**
 
-**Nikos Vlachogiannakis, 2025**
+<!-- **Nikos Vlachogiannakis, 2025** -->
 
 ---
 
@@ -12,24 +12,23 @@
 
 - **<span style="color:skyblue">Concept drift</span>**: when data distribution changes 
 over time
-- Analyzing concept drift is crucial for automated systems
 
-- Detecting anomalies is essential for identifying faulty productions
 - Drift is studied in <span style="color:skyblue">stream setups</span>
-- Concept drift appears in time-series data
+
 - Processing drifting data streams involves 2 tasks:
   - <span style="color:skyblue">Online(or stream) learning</span> for predictive tasks
 
   - <span style="color:skyblue">Monitoring systems</span> for unexpected behavior
 
 Note: 
+- Analyzing concept drift is crucial for automated systems
+- Detecting anomalies is essential for identifying faulty productions
 - <span style="color:skyblue">stream setups</span>: where changes in the underlying 
 data distribution necessitate model adaptation or alerting a human operator 
 for corrective action.
-
+- Concept drift appears in time-series data
 - Time series: Such drift usually manifests itself as trends, and its absence is known 
 as stationarity
-
 - Drift must be taken into account in transfer learning, a deep learning technique in 
 which the model is pre-trained on a similar task with a more extensive dataset before 
 being fine-tuned on the target task using a limited dataset. 
@@ -63,6 +62,8 @@ distribution $D_t(X)$
 - Both real and virtual drift might be present
 - Focuses on model losses
 
+<br><br>
+
 # Unsupervised Settings
 - Only virtual drift has to be considered
 - Emphasizes on the data distribution or reconstruction
@@ -89,12 +90,15 @@ classifier performance.
 
 - Drift detectors are decision algorithms on data-time-pairs that determine whether 
 there is drift
-- A drift detection model is accurate
-or valid when:
-  - The algorithm will always make the right decision is we just provide enough data
-  - We can control the chance of false positives independent of the stream.
+
+- Accurate drift detection model if:
+  - The algorithm always makes the right decision if we provide enough data
+  - Can control the chance of false positives independent of the stream.
+
 - Drift detection is typically applied in a streaming setting where data points arrive 
-over time, and a sample is analyzed within a time window
+over time
+
+- Samples are analyzed within a time window
 
 Note:  False Positive: Type 1 error. A valid drift detector should allow you to set and 
 bound the probability of raising a false alarm — detecting drift when in reality there 
@@ -156,6 +160,8 @@ representation (or embedding) as the descriptor of the data
 - **Input:** Windows of data samples  
 - **Output:** Possibly smoothed descriptor of windows
 
+<br><br>
+
 ### Possible Descriptors
 
 - grid- or tree-based binnings
@@ -184,6 +190,8 @@ function.
 
 - **Input:** Descriptor of windows  
 - **Output:** Dissimilarity score
+
+<br><br>
 
 # Stage 4: Normalization
 
@@ -247,6 +255,8 @@ data distribution has changed over time, signaling drift in data streams
 
 ## Testing Procedures
 
+<br><br>
+
 ### 1. Loss-based Approach
 
 - Machine learning models evaluate the similarity of new to existing samples
@@ -270,13 +280,6 @@ observing a sample, can be applied to detect drift
 
 <img src="figures/virtual_classifier_dark.png" alt="Virtual-classifier">
 
-<!-- - Store all samples explicitly in two windows (stage 1)
-- Define labels according to reference or current sample: 
-$y = -1, \text{ if } x \in S_{-}(t)$  $y = 1, \text{ if } x \in S_{+}(t)$
-- Use that to train a model (stage 2)
-- The test score then serves as a drift score (stage 3) which is commonly a normalized 
-score (stage 4) -->
-
 Note:
 - If a classifier performs better than random guessing, then the class distribution must
  be different
@@ -288,7 +291,7 @@ data are necessary
 
 --
 
-#### 3. Statistical-test-based
+### 3. Statistical-test-based
 
 - <span style="color:skyblue">Kolmogorov-Smirnov Test</span>
 <img src="figures/Statist_test_dark.png" alt="Statistical-test-based">
@@ -314,9 +317,7 @@ comparing their means in a high-dimensional feature space defined by a kernel fu
 
 --
 
-# Meta-Statistic-Based Drift Detectors
-
-- <span style="color:skyblue">1. AdWin (ADaptive WINdowing)</span>
+### 1. AdWin (ADaptive WINdowing)
 <img src="figures/AdWin_dark.png" alt="AdWin">
 
 Note: Stands for ADaptive WINdowing and is one of the most popular algorithms in 
@@ -325,7 +326,7 @@ input to estimate the actual change point
 
 --
 
-- <span style="color:skyblue">2. ShapeDD (Shape Drift Detector)</span>
+### 2. ShapeDD (Shape Drift Detector)
 
 Focuses on the discrepancy of two consecutive time windows
 
@@ -358,11 +359,6 @@ drift-detecting.
   - Cluster time points into intervals such that the corresponding data points also form
    clusters, solving an optimization problem for a number of clusters
 
-<!-- Notes:
-The authors propose a general scheme with 4 stages: windowing, describing distributions,
- computing differences, and deciding if drift occurred.  
-They also categorize existing methods into 4 types based on their strategy. -->
-
 --
 
 # 3. Model-based
@@ -381,66 +377,289 @@ removing the time discretization
 
 # Analysis of Strategies
 
-- It investigates the role of drift strength, the influence of drift in correlating 
-features, data dimensionality, and the number of drift events
-- ROC-AUC is used to evaluate the performance, measuring how well the obtained scores 
- separate drifting and non-drifting setups
-
 --
 
 # Datasets
 
 <img src="figures/datasets_dark.png" alt="Datasets">
 
-- 2-dimensional synthetic datasets with differently structured abrupt drift:
+- Generate data streams consisting of 750 samples
+- Drift times randomly picked between t = 100 and t = 650 by changing:
+  - Intensity
+  - Number of drift events
+  - Number of dimensions
+
+Note: 2-dimensional synthetic datasets with differently structured abrupt drift:
   - Uniform Shift
   - Gaussian Correlation Flip
   - Uniform Squares Rotation
 
-Note:
 Illustration of used datasets (default parameters, original size). Concepts are 
 color-coded (Before drift: blue/yellow, after drift: green/purple)
+
+- Intensity, default is 0.125.
+- Number of drift events, default is 1.
+- Number of dimensions by adding non-drifting/noise dimensions, default is 5, that is, 
+3 noise dimensions.
 
 --
 
 # Methods
 
-We make use of D34 (used model: Logistic Regression, Random
-Forest), KS, MMD, ShapeDD, KCpD,5 and DAWIDD. For MMD,
-ShapeDD, KCpD, and DAWIDD, we used the RBF kernel and 2,500
-permutations. This way we cover every major type and sub-type
-(see Section 5).
-For KCpD, we use the extension proposed in Arlot et al. (2019)
-and choose the smallest α-value to detect a drift as a score. All other
-methods provide a native score.
-The stream is split into chunks/windows of 150 and 250
-samples with 100 samples overlapping. Two-sample (split point is
-midpoint) and block-based approaches are applied to each chunk.
-Meta-statistic approaches are applied to the stream; then, the
-chunk-wise minimum of the score is taken.
+- We use D3 (Logistic Regression, Random Forest), KS, MMD, ShapeDD, KCpD and DAWIDD
+- Split stream into windows of 150 and 250 samples (100 samples are overlapping)
+- Two-sample (split is midpoint) and block-based approaches are applied to each window
+- Meta-statistic approaches are applied to the entire stream and the window-wise minimum
+ of the score is taken
+
+Note:
+- For MMD, ShapeDD, KCpD, and DAWIDD, we used the RBF kernel and 2,500 permutations
+- For KCpD, we use an extension and chose the smallest α-value to detect a drift as 
+a score. All other methods provide a native score
+- By taking these models we cover every major type and sub-type
+
+<!-- -- -->
+
+<!-- ### D3
+- If the classifier performs better than random, it suggests drift
+
+### Kolmogorov-Smirnov (KS)
+- Compares the empirical distribution functions of two samples (before/after)
+
+### Maximum Mean Discrepancy (MMD)
+- Measures the distance between the distributions
+
+### ShapeDD
+- Focuses on the “shape” of drift signals to detect meaningful changes robustly
+
+### Kernel Change-point Detection (KCpD)
+- Maximizes the mean value of blocks along the diagonal of a kernel matrix
+
+### DAWIDD
+- Tests the independence between data and time directly -->
 
 --
 
 # Evaluation
 
-We run each setup 500 times. The performance is evaluated
-using the ROC-AUC which measures how well the obtained scores
-separate the drifting and non-drifting setups. The ROC-AUC is
-1 if the largest score without drift is smaller than the smallest
-score with, it is 0.5 if the alignment is random. Thus, the ROC-
-AUC provides a scale-invariant upper bound on the performance
-of every concrete threshold. Furthermore, the ROC-AUC is not
-affected by class imbalance and thus a particularly good choice as
-the number of chunks with and without drift is not the same for
-most setups.
+Repeat each setup <span style="color:skyblue">500</span> times. 
+
+The performance is evaluated using the <span style="color:skyblue">ROC-AUC</span>. 
+- AUC = 1 if the largest score without drift is smaller than the smallest
+- AUC = 0.5 if the alignment is random. 
+
+### ROC-AUC
+
+- Provides a scale-invariant upper bound on the performance of every concrete threshold 
+- Not affected by class imbalance
+
+Note: 
+- ROC-AUC: Measures how well the obtained scores separate the drifting and 
+non-drifting setups
+- <span style="color:skyblue">It is not affected by class imbalance</span> and thus a 
+particularly good choice as the number of chunks with and without drift is not the same 
+for most setups.
+
+ROC: A graph that plots the True Positive Rate (sensitivity) against the False Positive 
+Rate (1 - specificity) at different classification thresholds. 
+
+AUC: The area under the ROC curve, summarizing the model's overall performance in 
+distinguishing between classes.
+
+In essence, ROC AUC helps assess how well a model can separate the classes it's trying 
+to predict. It's a valuable tool for comparing different models and choosing the one 
+that best suits the specific classification task.
 
 ---
 
 # Results
 
+Note: 
+- Provided definitions of drift and drift detection
+- Discussed the relevance of unsupervised drift detection in the motoring setting
+- Categorized state-of-the-art approaches
+- Analyzed them based on a general, four-staged scheme
+- Summarize how different methods are implemented
+- analyzed the different underlying strategies on simple data sets to showcase the 
+effects of various parameters reducing the effect of other dataset-specific parameters
+
+# Part B Paper
+
+This paper is a survey on concept drift in unsupervised data streams, focusing 
+specifically on how to locate and explain drift after it is detected. It formally 
+defines drift localization and explanation, reviews methods for identifying where and 
+how drift occurs in data, and compares strategies experimentally on artificial datasets.
+ The authors also discuss challenges in making these explanations understandable for 
+human operators and propose guidelines for practical applications.
+
 --
 
+<img src="figures/performance_dark.png" alt="Drift detection performance for various 
+intensities, number of dimensions, and number of drift events" style="max-width: 75%; 
+max-height: 75%;">
 
+Note: We evaluate the detectors’ capability to detect very small drifts. From a 
+theoretical perspective, we expect that smaller drifts are harder to detect.
+
+# Drift intensity
+- Detectors perform better with increasing drift strength
+- ShapeDD was notably effective due to its use of MMD, emphasizing the importance of 
+meta-heuristics
+- The model choice for D3 impacts performance, with simpler models like Logistic 
+Regression working well on easy datasets, whereas more complex models are needed for 
+intricate data
+- KCpD outperforms all methods, especially at higher intensities and its close with 
+ShapeDD
+
+### Drift in correlating features
+
+- Drift can affect the correlation or dependency of several features only, in which case 
+it cannot be detected in the marginal features.
+- We captured this phenomenon in the Gauss and two-overlap datasets.
+- KS performance close to random chance and D3 with Random Forests shows similar issues 
+that <span style="color:red">cannot</span> be observed for the kernel-based methods.
+
+# Total Number of Dimensions
+
+- All methods suffer heavily from high dimensionality
+- Kernel-based methods, this can be explained by the choice of the RBF kernel, also 
+explaining why global KCpD performs quite poorly
+- D3 with Random Forest, this result is somewhat surprising due to the inherent feature 
+selection of tree-based methods
+- On Gauss where trees have a harder time exploiting the structure, the method suffers 
+the most
+
+# Number of drift events
+
+- Results for different numbers of change points, alternating between two distributions
+- All drift detectors suffer in this case, which is particularly interesting for global 
+KCpD
+
+### Advice
+
+- Suggest incorporating as much domain knowledge into the choice or construction of the 
+descriptor as possible.
+- Recommend the usage of meta-statistic or block-based methods.
+- Advise only using methods that make heavy use of feature-wise analysis if drift in the
+ correlations only is either less relevant or very unlikely. If this is not an option, 
+ensemble-based drift detectors that combine feature-wise and non-feature-wise approaches
+ may provide an appropriate solution
+- Advise making use of block-based drift detectors if several drift events are to be 
+expected. In particular, we suggest not to make use of meta-statistic-based methods 
+unless they can explicitly deal with the setup
+
+--
+
+<img src="figures/effect_dark.png" alt="Effect of total number of dimensions or choice 
+of split point for various drift intensities and drift detectors">
+
+Note: Analyzed the behavior in the case of the uniform dataset with a single drift in 
+the middle and 250 samples
+
+# Total Number of dimensions
+
+- For D3 and MMD, the drift becomes harder to detect
+- KS suffers from the multi-testing problem, that is, drift-like behavior emerging by 
+random chance
+
+### Advice
+
+- Choosing appropriate preprocessing techniques or descriptors to select or construct 
+suited features
+- In case of high dimensionality with high cost in case of false alarms, one should 
+refrain from using drift detectors that operate feature-wise
+
+# Effect of split point
+
+- We study this effect using the uniform dataset with 250 samples, either with optimal 
+or with random split points
+- Observe a significant increase in performance which is also more reliable in case of a
+ correct split point
+
+--
+
+<img src="figures/performance_d3_dark.png" alt="Drift detection performance for various 
+models used by D3" style="max-width: 75%; max-height: 75%;">
+
+Note: The metric is implicitly given by the model making it interesting to study
+
+Consider D3 with different models:
+- Logistic Regression (log.reg.)
+- Random Forests (RF)
+- Extra Tree Forests (ET)
+- k-Nearest Neighbor classifier (k-NN)
+
+The performance is strongly impacted by the model and its interplay with the dataset
+
+- k-NN is best on Gauss but worst on uniform
+- similar models behave alike, for example Extra Tree Forests and Random Forests
+- Thus, models pose a way to integrate prior knowledge into the detection
+
+This result matches the observations of Hinder et al. (2022b) where the authors argued 
+that the descriptor (stage 2) is more important than the metric (stage 3) derived from 
+it.
+
+--
+
+<img src="figures/performance_loss_dark.png" alt="Drift detection performance of various
+ model/loss-based approaches" style="max-width: 100%; max-height: 100%;">
+
+Note: Considered outlier- and density/loss-based approaches
+- One-class-SVM (SVM; RBF kernel)
+- Local Outlier Factor (LOF; k = 10)
+- Isolation Forests (IF)
+- Kernel-Density Estimate (KD; RBF kernel)
+- Gaussian Mixture Model [GMM; mixture components ≤ 10 cross-validation (CV) or 
+Dirichlet prior (Bayes)]
+
+Use either the outlier score or the sample probability as the drift score
+
+Use the first 100 samples for training, and the remainder is used for evaluation
+
+Due to poor performance, we increased the default intensity to 0.5 from 0.125
+
+Found additional empirical evidence which challenge the suitability of loss-based 
+approaches for drift detection
+
+Suggest the reader not to make use of loss-based approaches
+
+--
+
+# Summary
+
+1. As much domain knowledge as possible should be incorporated when designing drift 
+detection schemes
+
+2. Use meta- or block-based methods
+
+3. Choosing good split points is crucial for obtaining good detection capabilities
+
+4. Feature-wise analysis should only be performed if it is expected that the drift 
+does not inflict itself in correlations
+
+5. On high dimensional data, avoid using dimension-wise methodologies
+
+6. Block-based detectors are suitable when multiple drifts are expected
+
+7. Avoid loss-based strategies when the target of the drift detection is monitoring for 
+anomalous behavior
+
+Note: 
+
+1. This concerns selecting appropriate preprocessing techniques, constructing and 
+engineering suitable features and choosing fitting descriptors in stages 1 and 2 for the
+ process
+2. -----
+3. -----
+4. Otherwise, relying on multi-variant techniques seems to be the better solution
+5. especially if false alarms are costly in the considered application. It might be 
+beneficial to consider feature selection approaches
+6. -----
+7. -----
+
+Datasets are simple for the sake of controlling a number of parameters
+
+Were able to confirm the theoretical considerations of (paper) in our experiments
 
 ---
 
