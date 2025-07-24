@@ -56,6 +56,18 @@ distribution $D_t(X)$
 
 <img src="figures/real_virtual_drift_dark.png" alt="Real & Virtual Drift">
 
+Note:
+
+- Concept drift can be subdivided into two types: virtual drift and real drift. 
+
+- Virtual drift can be defined as a change in the unconditional probability distribution 
+P(x)
+
+- Real drift can be defined as a change in the conditional probabilities P(y|x)
+
+- They may occur separately or simultaneously and may have different impacts on the 
+classifier performance.
+
 --
 
 # Supervised Settings
@@ -67,22 +79,6 @@ distribution $D_t(X)$
 # Unsupervised Settings
 - Only virtual drift has to be considered
 - Emphasizes on the data distribution or reconstruction
-
-
-Note: 
-- abrupt drift refers to a sudden change in distribution at a specific time referred to 
-as change point
-- changes gradually occurring over an interval signify gradual drift. 
-- During a changing period in incremental drift, samples are drawn from both
-distributions with varying probabilities. 
-- Recurring drift refers to the reappearance of past distributions, usually due to 
-seasonality
-
-Concept drift can be subdivided into two types: virtual drift and real drift. Virtual 
-drift can be defined as a change in the unconditional probability distribution 
-P(x) and real drift can be defined as a change in the conditional probabilities P(y|x). 
-They may occur separately or simultaneously and may have different impacts on the 
-classifier performance.
 
 ---
 
@@ -235,6 +231,33 @@ normalized scales are accuracy or the ROC-AUC.
 
 <img src="figures/drift_det_types_dark.png" alt="Types of Windows">
 
+Note:
+
+- Total Variation norm: Measures the maximum difference between two probability 
+distributions.
+
+- Hellinger distance: A symmetric distance between distributions, good for 
+probabilities.
+
+- MMD (Maximum Mean Discrepancy): A kernel-based measure — tests if two samples come 
+from the same distribution.
+
+- Jensen–Shannon metric: Symmetric, smoothed version of KL-divergence.
+
+- Kullback–Leibler (KL) divergence: Measures how one probability distribution diverges 
+from another — asymmetric.
+
+- Model loss: The performance drop of a model trained on one window and tested on 
+another.
+
+- Neighborhood intersection: Compares k-nearest neighbor graphs of two datasets.
+
+- Wasserstein metric: Also called Earth Mover’s Distance — measures the “cost” of 
+transforming one distribution into another.
+
+- Mean and moment differences: Compare means, variances, and higher moments of the 
+distributions.
+
 --
 
 # Two-sample Analysis
@@ -313,7 +336,20 @@ comparing their means in a high-dimensional feature space defined by a kernel fu
 
 # Meta-statistics
   - Combine values of several estimates to address issues such as the multiple testing 
-  problem and sub-optimal sensitivity and get better results
+problem and sub-optimal sensitivity and get better results
+
+Note: 
+## Multiple Testing Problem:
+When drift detectors test for changes at many time points independently, the chance of 
+falsely detecting a drift (false positive) increases, even if no true drift exists. This
+ statistical issue—called the multiple testing problem—leads to unreliable results 
+unless adjustments (like correction methods or meta-statistics) are applied.
+
+## Sub-optimal Sensitivity:
+Sub-optimal sensitivity refers to a detector’s reduced ability to recognize real but 
+subtle or complex drifts, especially when it relies on overly simplistic assumptions or 
+windowing. As a result, true drifts may go undetected, particularly in high-dimensional 
+or correlated data streams.
 
 --
 
@@ -357,14 +393,13 @@ drift-detecting.
 
 # 2. Clustering-based
   - Cluster time points into intervals such that the corresponding data points also form
-   clusters, solving an optimization problem for a number of clusters
+ clusters, solving an optimization problem for a number of clusters
 
 --
 
 # 3. Model-based
 
-- Construct new kernels using machine learning models
-- Moment Trees are used to construct such kernels
+- Construct new kernels using machine learning models (e.g. Moment Trees)
 
 Note: 
 - <span style="color:skyblue">Moment Trees</span>: Random Forests with a modified loss 
@@ -376,6 +411,24 @@ removing the time discretization
 ---
 
 # Analysis of Strategies
+
+Note: 
+- Provided definitions of drift and drift detection
+- Discussed the relevance of unsupervised drift detection in the motoring setting
+- Categorized state-of-the-art approaches
+- Analyzed them based on a general, four-staged scheme
+- Summarize how different methods are implemented
+- analyzed the different underlying strategies on simple data sets to showcase the 
+effects of various parameters reducing the effect of other dataset-specific parameters
+
+# Part B Paper
+
+This paper is a survey on concept drift in unsupervised data streams, focusing 
+specifically on how to locate and explain drift after it is detected. It formally 
+defines drift localization and explanation, reviews methods for identifying where and 
+how drift occurs in data, and compares strategies experimentally on artificial datasets.
+ The authors also discuss challenges in making these explanations understandable for 
+human operators and propose guidelines for practical applications.
 
 --
 
@@ -389,10 +442,17 @@ removing the time discretization
   - Number of drift events
   - Number of dimensions
 
-Note: 2-dimensional synthetic datasets with differently structured abrupt drift:
-  - Uniform Shift
-  - Gaussian Correlation Flip
-  - Uniform Squares Rotation
+Note: 
+1. Uniformly sampled from the unit square, drift is introduced
+by a shift along the diagonal. Intensity is shift length; noise in
+additional dimensions is uniform
+2. Data sampled from a Gaussian (normal) distribution with
+correlated features, drift flips the sign of the correlation.
+Intensity is correlation strength; noise in additional dimensions
+is Gaussian
+3. Data sampled from two overlapping uniform squares, drift
+rotates by 90o . Intensity is inverse to the size of overlap; noise
+in additional dimensions is uniform
 
 Illustration of used datasets (default parameters, original size). Concepts are 
 color-coded (Before drift: blue/yellow, after drift: green/purple)
@@ -406,13 +466,40 @@ color-coded (Before drift: blue/yellow, after drift: green/purple)
 
 # Methods
 
-- We use D3 (Logistic Regression, Random Forest), KS, MMD, ShapeDD, KCpD and DAWIDD
 - Split stream into windows of 150 and 250 samples (100 samples are overlapping)
-- Two-sample (split is midpoint) and block-based approaches are applied to each window
+
+- Two-sample and block-based approaches are applied to each window
+
 - Meta-statistic approaches are applied to the entire stream and the window-wise minimum
  of the score is taken
 
 Note:
+- We use D3 (Logistic Regression, Random Forest), KS, MMD, ShapeDD, KCpD and DAWIDD
+
+  - D3 (Logistic Regression, Random Forest): D3 trains a classifier (e.g., logistic 
+  regression or random forest) to distinguish between two time windows, using the 
+  classifier's performance to infer drift if it exceeds random chance.
+
+  - KS (Kolmogorov–Smirnov): KS compares empirical cumulative distributions feature-wise
+   between two windows and signals drift if the maximum difference exceeds a statistical
+   threshold.
+
+  - MMD (Maximum Mean Discrepancy): MMD is a kernel-based method that computes the 
+  distance between two data distributions in a reproducing kernel Hilbert space to 
+  detect drift.
+
+  - ShapeDD: ShapeDD detects drift by analyzing the temporal pattern of a statistical 
+  distance (e.g., MMD) across time, identifying characteristic "shapes" that indicate 
+  change points.
+
+  - KCpD (Kernel Change-point Detection): KCpD partitions a data stream into segments by
+   maximizing within-block kernel similarity and detects drift by identifying optimal 
+  segment boundaries.
+
+  - DAWIDD: DAWIDD tests for statistical dependence between data and time using 
+  kernel-based independence tests (e.g., HSIC), detecting drift without relying on fixed
+   window splits.
+
 - For MMD, ShapeDD, KCpD, and DAWIDD, we used the RBF kernel and 2,500 permutations
 - For KCpD, we use an extension and chose the smallest α-value to detect a drift as 
 a score. All other methods provide a native score
@@ -445,18 +532,20 @@ a score. All other methods provide a native score
 Repeat each setup <span style="color:skyblue">500</span> times. 
 
 The performance is evaluated using the <span style="color:skyblue">ROC-AUC</span>. 
-- AUC = 1 if the largest score without drift is smaller than the smallest
-- AUC = 0.5 if the alignment is random. 
+
 
 ### ROC-AUC
 
 - Provides a scale-invariant upper bound on the performance of every concrete threshold 
 - Not affected by class imbalance
 
-Note: 
+Note:
+- AUC = 1 if the largest score without drift is smaller than the smallest score with 
+drift
+- AUC = 0.5 if the alignment is random.
 - ROC-AUC: Measures how well the obtained scores separate the drifting and 
 non-drifting setups
-- <span style="color:skyblue">It is not affected by class imbalance</span> and thus a 
+- <span style="color:red">It is not affected by class imbalance</span> and thus a 
 particularly good choice as the number of chunks with and without drift is not the same 
 for most setups.
 
@@ -473,24 +562,6 @@ that best suits the specific classification task.
 ---
 
 # Results
-
-Note: 
-- Provided definitions of drift and drift detection
-- Discussed the relevance of unsupervised drift detection in the motoring setting
-- Categorized state-of-the-art approaches
-- Analyzed them based on a general, four-staged scheme
-- Summarize how different methods are implemented
-- analyzed the different underlying strategies on simple data sets to showcase the 
-effects of various parameters reducing the effect of other dataset-specific parameters
-
-# Part B Paper
-
-This paper is a survey on concept drift in unsupervised data streams, focusing 
-specifically on how to locate and explain drift after it is detected. It formally 
-defines drift localization and explanation, reviews methods for identifying where and 
-how drift occurs in data, and compares strategies experimentally on artificial datasets.
- The authors also discuss challenges in making these explanations understandable for 
-human operators and propose guidelines for practical applications.
 
 --
 
@@ -554,7 +625,11 @@ unless they can explicitly deal with the setup
 of split point for various drift intensities and drift detectors">
 
 Note: Analyzed the behavior in the case of the uniform dataset with a single drift in 
-the middle and 250 samples
+the middle and 250 samples, either with optimal or with random split points
+
+Effect of total number of dimensions or choice of split point for various drift 
+intensities and drift detectors. Graphic shows median (line), 25% − 75%-quantile 
+(inner area), min − max-quantile (outer area), and outliers (circles)
 
 # Total Number of dimensions
 
@@ -562,19 +637,17 @@ the middle and 250 samples
 - KS suffers from the multi-testing problem, that is, drift-like behavior emerging by 
 random chance
 
+# Effect of split point
+
+- Observe a significant increase in performance which is also more reliable in case of a
+ correct split point
+
 ### Advice
 
 - Choosing appropriate preprocessing techniques or descriptors to select or construct 
 suited features
 - In case of high dimensionality with high cost in case of false alarms, one should 
 refrain from using drift detectors that operate feature-wise
-
-# Effect of split point
-
-- We study this effect using the uniform dataset with 250 samples, either with optimal 
-or with random split points
-- Observe a significant increase in performance which is also more reliable in case of a
- correct split point
 
 --
 
@@ -588,6 +661,13 @@ Consider D3 with different models:
 - Random Forests (RF)
 - Extra Tree Forests (ET)
 - k-Nearest Neighbor classifier (k-NN)
+
+**Extra Trees (Extremely Randomized Trees) Forests** is an ensemble learning method 
+similar to Random Forests but with more randomness introduced during tree construction. 
+Unlike Random Forests, which select the best split among a random subset of features, 
+Extra Trees choose split thresholds randomly, making them faster to train and often 
+reducing variance at the cost of slightly increased bias.
+
 
 The performance is strongly impacted by the model and its interplay with the dataset
 
