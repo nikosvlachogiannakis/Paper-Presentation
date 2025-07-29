@@ -26,7 +26,9 @@ Nikolaos Vlachogiannakis, 2025
     - [What is gh?](#/3/7)
     - [What is LazyGit?](#/3/8)
 - [Create a Project and use Poetry](#/4)
+  - ...
 - [Advanced Workflow](#/5)
+  - ...
 
 </div>
 
@@ -47,6 +49,35 @@ Nikolaos Vlachogiannakis, 2025
     - [CSS File](#/6/18)
     - [Markdown File](#/6/19)
     - [JSON File](#/6/20)
+
+</div>
+
+</div>
+
+--
+
+## Extra
+
+<div style="display: flex; gap: 0em; text-align: left;">
+
+<div style="flex: l;">
+
+- [Store images as PDFs](#7)
+  - [On Windows](#7/1)
+  - [On Linux](#7/2)
+
+- [Cheat Sheet](#8)
+  - [File & Directory Management](#8/1)
+  - [File Viewing & Editing](#8/2)
+  - [Search & Navigation](#8/3)
+  - [System Utilities](#8/4)
+  - [Package Management(APT)](#8/5)
+  - [Python & pyenv](#8/6)
+  - [SSH & Remote Access](#8/7)
+  - [FTP & File Transfer](#8/8)
+  - [Shortcuts](#8/9)
+  - [Git Essentials - Part 1](#8/10)
+  - [Git Essentials - Part 2](#8/11)
 
 </div>
 
@@ -656,7 +687,7 @@ data or configuration for the presentation.
 
 ## Windows
 
-### Oprion 1
+### Option 1
 
 - Take a screenshot using <span style="color:skyblue">Win + Shift + S</span>
 - <span style="color:skyblue">Paste</span> it into Paint or Word or a 
@@ -666,7 +697,7 @@ data or configuration for the presentation.
 Print to PDF</span> as the printer
 - <span style="color:skyblue">Save</span> the PDF
 
-### Option 2(PowerShell)
+### Option 2 (PowerShell)
 
 <pre><code class="language-bash" data-trim>
 Start-Process -FilePath "screenshot.png" -Verb PrintTo -ArgumentList "Microsoft Print to PDF"
@@ -690,7 +721,7 @@ Start-Process -FilePath "screenshot.png" -Verb PrintTo -ArgumentList "Microsoft 
   <span style="color:skyblue">Export As</span> > 
   <span style="color:skyblue">select PDF</span>
 
-### Option 2(Terminal)
+### Option 2 (Terminal)
 
 <pre><code class="language-bash" data-trim>
 convert screenshot.png screenshot.pdf
