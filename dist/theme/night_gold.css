@@ -159,6 +159,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   color: skyblue;
 }
 
+.reveal ol li::marker {
+  color: skyblue;
+}
+
 .reveal ol {
   list-style-type: decimal;
 }

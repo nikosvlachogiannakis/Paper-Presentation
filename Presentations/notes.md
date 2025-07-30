@@ -26,7 +26,10 @@ Nikolaos Vlachogiannakis, 2025
     - [What is gh?](#/3/7)
     - [What is LazyGit?](#/3/8)
 - [Create a Project and use Poetry](#/4)
-  - ...
+  - [Step-by-Step Process](#/4/1)
+  - [Additional Information](#/4/5)
+    - [What is Poetry?](#/4/6)
+    - [TOML File](#/4/7)
 - [Advanced Workflow](#/5)
   - ...
 
@@ -329,16 +332,99 @@ commands, and it works entirely in your terminal without needing a graphical IDE
 
 ## IDE(Integrated Development Environment)
 
-It’s a software application that provides a set of tools for programmers to write, test,
- and debug their code more efficiently - all in one place. Examples of IDEs: PyCharm, 
-Visual Studio, Eclipse.
+<span style="color:skyblue">IDE</span> is a software application that provides a set of 
+tools for programmers to write, test, and debug their code more efficiently - all in one
+ place. 
+
+Examples of IDEs: PyCharm, Visual Studio, Eclipse.
 
 ---
 
-# Create a Project and use Poetry
+# Create a Project with Poetry
 
 --
 
+## 1. Open Terminal and Create a new Poetry Project
+
+<pre><code class="language-bash" data-trim>
+poetry new my_project
+</code></pre>
+
+This creates:
+
+<pre><code class="language-markdown" data-trim>
+my_project/
+├── my_project/
+│   └── __init__.py
+├── tests/
+│   └── __init__.py
+│   └── test_my_project.py
+├── pyproject.toml
+</code></pre>
+
+## 2. Move Into Your Project Directory
+
+<pre><code class="language-bash" data-trim>
+cd my_project
+</code></pre>
+
+## 3. Open in VS Code
+
+<pre><code class="language-bash" data-trim>
+code .
+</code></pre>
+
+--
+
+## 4. Set Up the Python Environment
+
+Inside the project folder:
+
+<pre><code class="language-bash" data-trim>
+poetry shell
+</code></pre>
+
+This activates the virtual environment.
+
+If you want to just install dependencies without activating the shell:
+
+<pre><code class="language-bash" data-trim>
+poetry install
+</code></pre>
+
+--
+
+## 5. Configure VS Code to Use Poetry's Environment
+
+VS Code needs to know about Poetry’s virtual environment.
+
+### Automatically:
+
+When you run <span style="color:skyblue">poetry shell</span>, then start VS Code using 
+<span style="color:skyblue">code .</span> from the same shell - it usually detects it.
+
+### Manually:
+
+1. Press <span style="color:skyblue">Ctrl+Shift+P</span> (Command Pallete)
+2. Select: <span style="color:skyblue">Python: Select Interpreter</span>
+3. Choose the one inside <span style="color:skyblue">.venv</span> or the one Poetry 
+created in cache.
+
+--
+
+## 6. Add Dependencies
+
+Add a package:
+
+<pre><code class="language-bash" data-trim>
+poetry add requests
+</code></pre>
+
+Add a dev dependency (e.g. pytest):
+
+<pre><code class="language-bash" data-trim>
+poetry add --dev pytest
+</code></pre>
 
 
 --
@@ -373,6 +459,78 @@ configurations.
 ---
 
 # Advanced Workflow
+
+--
+
+
+
+--
+
+# Additional Information
+
+--
+
+# What is pre-commit?
+
+<span style="color:skyblue">pre-commit</span> is a framework for managing and running 
+Git hooks, especially the <span style="color:skyblue">pre-commit</span> hook - a script 
+that runs right before you make a commit. It helps enforce code quality by running tools
+ (like linters, formatters, or security checks) automatically before code is committed 
+to your repository.
+
+--
+
+# Why use pre-commit?
+
+## Benefits:
+
+- Auto Formatting: Automatically runs tools like 
+<span style="color:skyblue">black</span>, <span style="color:skyblue">isort</span> or 
+<span style="color:skyblue">prettier</span> before commits.
+
+- Catch Errors Early: Run linters like <span style="color:skyblue">flake8</span>, 
+<span style="color:skyblue">mypy</span>, or <span style="color:skyblue">eslint</span> 
+before code gets into version control.
+
+- Consistent Code Style: Enforces uniform code style across your team or projects.
+
+- Avoid Forgetting: Automates things you might forget to do manually (e.g., remove debug
+ prints, fix import order).
+
+- Prevent Bad Commits: Can block commits that violate rules (e.g., large files, TODOs 
+left in code).
+
+--
+
+# Common Tools Managed with pre-commit
+
+- <span style="color:skyblue">black</span> – auto-format Python code
+
+- <span style="color:skyblue">flake8</span> – lint Python code
+
+- <span style="color:skyblue">mypy</span> – static type checker
+
+- <span style="color:skyblue">isort</span> – sort imports
+
+- <span style="color:skyblue">detect-secrets</span> – prevent committing secrets
+
+- <span style="color:skyblue">trailing-whitespace</span>, 
+<span style="color:skyblue">end-of-file-fixer</span>, etc. – small but useful 
+consistency checks
+
+--
+
+# How It Works
+
+When you install and configure <span style="color:skyblue">pre-commit</span>, it creates
+ a Git hook at <span style="color:skyblue">.git/hooks/pre-commit</span>. When you run 
+<span style="color:skyblue">git commit</span>, it automatically:
+
+1. Runs configured tools on your changed files
+
+2. Fails the commit if any tool fails
+
+3. Lets the commit succeed if everything passes
 
 ---
 
