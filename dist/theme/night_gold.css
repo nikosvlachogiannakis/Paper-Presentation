@@ -163,6 +163,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
   color: skyblue;
 }
 
+
+/*Type of Bullet Points*/
 .reveal ol {
   list-style-type: decimal;
 }
@@ -172,11 +174,11 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 .reveal ul ul {
-  list-style-type: square;
+  list-style-type: circle;
 }
 
 .reveal ul ul ul {
-  list-style-type: circle;
+  list-style-type: square;
 }
 
 .reveal ul ul,

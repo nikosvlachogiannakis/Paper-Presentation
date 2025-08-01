@@ -8,50 +8,62 @@ Nikolaos Vlachogiannakis, 2025
 
 ## Table of Contents
 
-<div style="display: flex; gap: 0em; text-align: left;">
+--
+
+<div style="display: flex; text-align: left; width: 70vw; margin-left: -12vw;">
 
 <div style="flex: 1;">
 
-- [Connect Remotely with SSH](#/2)
-  - [Password](#/2/1)
-  - [Passwordless](#/2/2)
-- [Create Repository & Git Push](#/3)
-  - [Manually](#/3/1)
-  - [Using gh](#/3/2)
-  - [Push Changes on GitHub](#/3/3)
-  - [LazyGit](#/3/4)
-  - [Check GitHub Connection](#/3/5)
-  - [Additional Information](#/3/6)
-    - [What is SSH?](#/3/7)
-    - [What is gh?](#/3/7)
-    - [What is LazyGit?](#/3/8)
-- [Create a Project and use Poetry](#/4)
-  - [Step-by-Step Process](#/4/1)
-  - [Additional Information](#/4/5)
-    - [What is Poetry?](#/4/6)
-    - [TOML File](#/4/7)
-- [Advanced Workflow](#/5)
-  - ...
+1. [Connect Remotely with SSH](#/2)
+    - [Password](#/2/1)
+    - [Passwordless](#/2/2)
+2. [Create Repository & Git Push](#/3)
+    - [Manually](#/3/1)
+    - [Using gh](#/3/2)
+    - [Push Changes on GitHub](#/3/3)
+    - [LazyGit](#/3/4)
+    - [Check GitHub Connection](#/3/5)
+    - [Additional Information](#/3/6)
+      - [What is SSH?](#/3/7)
+      - [What is gh?](#/3/7)
+      - [What is LazyGit?](#/3/8)
+3. [Create a Project and use Poetry](#/4)
+    - [Step-by-Step Process](#/4/1)
+    - [Additional Information](#/4/5)
+      - [What is Poetry?](#/4/6)
+      - [TOML File](#/4/7)
 
 </div>
 
 <div style="flex: 1;">
 
-- [Reveal.js Presentation](#/6)
-  - [Install Node.js](#/6/1)
-  - [Get a Template](#/6/2)
-  - [Change Theme](#/6/4)
-  - [Change Presentations with the same template](#/6/5)
-  - [Load Slides Locally](#/6/6)
-  - [Hosting Slides on GitHub Pages](#/6/7)
-  - [Public vs Private Repos and Ways to Share Slides](#/6/9)
-  - [Managing Large Files with Git LFS](#/6/12)
-  - [Additional Information](#/6/15)
-    - [What is Reveal.js](#/6/16)
-    - [HTML File](#/6/17)
-    - [CSS File](#/6/18)
-    - [Markdown File](#/6/19)
-    - [JSON File](#/6/20)
+4. [Advanced Workflow](#/5)
+    - [...](#/5)
+    - [Additional Information](#/5)
+      - [What is pre-commit?](#/5)
+      - [Why use pre-commit?](#/5)
+      - [Common Tools](#/5)
+      - [How It Works](#/5)
+
+</div>
+
+<div style="flex: 1;">
+
+5. [Reveal.js Presentation](#/6)
+    - [Install Node.js](#/6/1)
+    - [Get a Template](#/6/2)
+    - [Change Theme](#/6/4)
+    - [Change Presentations with the same template](#/6/5)
+    - [Load Slides Locally](#/6/6)
+    - [Hosting Slides on GitHub Pages](#/6/7)
+    - [Public vs Private Repos and Ways to Share Slides](#/6/9)
+    - [Managing Large Files with Git LFS](#/6/12)
+    - [Additional Information](#/6/15)
+      - [What is Reveal.js](#/6/16)
+      - [HTML File](#/6/17)
+      - [CSS File](#/6/18)
+      - [Markdown File](#/6/19)
+      - [JSON File](#/6/20)
 
 </div>
 
@@ -61,27 +73,33 @@ Nikolaos Vlachogiannakis, 2025
 
 ## Extra
 
-<div style="display: flex; gap: 0em; text-align: left;">
+<div style="display: flex; gap: 4em; text-align: left;">
 
 <div style="flex: l;">
 
-- [Store images as PDFs](#7)
-  - [On Windows](#7/1)
-  - [On Linux](#7/2)
+6. [Store images as PDFs](#/7)
+    - [On Windows](#/7/1)
+    - [On Linux](#/7/2)
 
-- [Cheat Sheet](#8)
-  - [File & Directory Management](#8/1)
-  - [File Viewing & Editing](#8/2)
-  - [Search & Navigation](#8/3)
-  - [System Utilities](#8/4)
-  - [Package Management(APT)](#8/5)
-  - [Python & pyenv](#8/6)
-  - [SSH & Remote Access](#8/7)
-  - [FTP & File Transfer](#8/8)
-  - [Shortcuts](#8/9)
-  - [Git Essentials - Part 1](#8/10)
-  - [Git Essentials - Part 2](#8/11)
+7. [Cheat Sheet](#/8)
+    - [File & Directory Management](#/8/1)
+    - [File Viewing & Editing](#/8/2)
+    - [Search & Navigation](#/8/3)
+    - [System Utilities](#/8/4)
+    - [Package Management(APT)](#/8/5)
+    - [Python & pyenv](#/8/6)
+    - [SSH & Remote Access](#/8/7)
+    - [FTP & File Transfer](#/8/8)
+    - [Shortcuts](#/8/9)
+    - [Git Essentials - Part 1](#/8/10)
+    - [Git Essentials - Part 2](#/8/11)
 
+</div>
+
+<div style="flex: l">
+
+8. [Git History & Stuff](#/9)
+    - [Work in progress](#/9)
 </div>
 
 </div>

@@ -8,6 +8,52 @@
 
 ---
 
+## Table of Contents
+
+<div style="display: flex; gap: 0em; text-align: left;">
+
+<div style="flex: 1;">
+
+- [Introduction](#/2)
+  - [Focus of the paper](#/2/1)
+- [Concept Drifts Categories](#/3)
+  - [Supervised & Unsupervised Settings](#/3/2)
+- [Drift Detection Setup](#/4)
+- [General Scheme for Drift Detection](#/5)
+  - [Stage 1: Data Aquisition](#/5/1)
+  - [Stage 2: Building a Descriptor](#/5/2)
+  - [Stage 3: Computing Dissimilarity](#/5/3)
+  - [Stage 4: Normalization](#/5/3)
+- [Categories of Drift Detectors](#/6)
+  - [Two-sample Analysis](#/6/1)
+    - [1. Loss-Based Approach](#/6/2)
+    - [2. Virtual-Classifier-Based](#/6/3)
+    - [3. Statistical-Test-Based](#/6/4)
+  - [Meta-Statistics](#/6/5)
+    - [1. AdWin](#/6/6)
+    - [2. ShapeDD](#/6/7)
+
+</div>
+
+<div style="flex: l;">
+
+  - [Block-Based Methods](#/6/8)
+    - [1. Independence-Test-Based](#/6/9)
+    - [2. Clustering-Based](#/6/10)
+    - [3. Model-Based](#/6/11)
+- [Analysis of Strategies](#/7)
+  - [Datasets](#/7/1)
+  - [Methods](#/7/2)
+  - [Evaluation](#/7/3)
+- [Results](#/8)
+  - [Summary](#/8/5)
+
+</div>
+
+</div>
+
+---
+
 # Introduction
 
 - **<span style="color:skyblue">Concept drift</span>**: when data distribution changes 
@@ -124,7 +170,7 @@ is none —and this bound should not depend on the particular data stream or dis
 
 --
 
-# Stage 1: Data acquisition
+# Stage 1: Data Acquisition
 
 - **Input:** Data Stream  
 - **Output:** Windows of data samples
@@ -182,7 +228,7 @@ function.
 
 --
 
-# Stage 3: Computing dissimilarity
+# Stage 3: Computing Dissimilarity
 
 - **Input:** Descriptor of windows  
 - **Output:** Dissimilarity score
@@ -260,7 +306,7 @@ distributions.
 
 --
 
-# Two-sample Analysis
+# Two-Sample Analysis
 
 - Split a sample $S(t)$ into two samples $S_{-}(t)$ and $S_{+}(t)$
 - Apply the test to those samples
@@ -280,7 +326,7 @@ data distribution has changed over time, signaling drift in data streams
 
 <br><br>
 
-### 1. Loss-based Approach
+### 1. Loss-Based Approach
 
 - Machine learning models evaluate the similarity of new to existing samples
 - Unsupervised
@@ -299,7 +345,7 @@ observing a sample, can be applied to detect drift
 
 --
 
-### 2. Virtual-classifier-based
+### 2. Virtual-Classifier-Based
 
 <img src="figures/virtual_classifier_dark.png" alt="Virtual-classifier">
 
@@ -314,7 +360,7 @@ data are necessary
 
 --
 
-### 3. Statistical-test-based
+### 3. Statistical-Test-Based
 
 - <span style="color:skyblue">Kolmogorov-Smirnov Test</span>
 <img src="figures/Statist_test_dark.png" alt="Statistical-test-based">
@@ -334,7 +380,7 @@ comparing their means in a high-dimensional feature space defined by a kernel fu
 
 --
 
-# Meta-statistics
+# Meta-Statistics
   - Combine values of several estimates to address issues such as the multiple testing 
 problem and sub-optimal sensitivity and get better results
 
@@ -370,13 +416,13 @@ Focuses on the discrepancy of two consecutive time windows
 
 --
 
-# Block-based methods
+# Block-Based Methods
   - Do not assume a split of the data into two windows but analyze an entire data 
   segment at once
 
 --
 
-# 1. Independence-test-based
+# 1. Independence-Test-Based
 
 - Dynamic Adaptive Window Independence Drift Detection (DAWIDD) is derived from the 
 formulation of concept drift as statistical dependence of data X and time T and thus 
@@ -391,13 +437,13 @@ drift-detecting.
 
 --
 
-# 2. Clustering-based
+# 2. Clustering-Based
   - Cluster time points into intervals such that the corresponding data points also form
  clusters, solving an optimization problem for a number of clusters
 
 --
 
-# 3. Model-based
+# 3. Model-Based
 
 - Construct new kernels using machine learning models (e.g. Moment Trees)
 
