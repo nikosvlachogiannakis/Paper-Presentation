@@ -57,17 +57,18 @@ Nikolaos Vlachogiannakis, 2025
     - [Install Node.js](#/6/1)
     - [Get a Template](#/6/2)
     - [Change Theme](#/6/4)
-    - [Change Presentations with the same template](#/6/5)
-    - [Load Slides Locally](#/6/6)
-    - [Hosting Slides on GitHub Pages](#/6/7)
-    - [Public vs Private Repos and Ways to Share Slides](#/6/9)
-    - [Managing Large Files with Git LFS](#/6/12)
-    - [Additional Information](#/6/15)
-      - [What is Reveal.js?](#/6/16)
-      - [HTML File](#/6/17)
-      - [CSS File](#/6/18)
-      - [Markdown File](#/6/19)
-      - [JSON File](#/6/20)
+    - [Transition Between Slides](#/6/5)
+    - [Change Presentations with the same template](#/6/6)
+    - [Load Slides Locally](#/6/7)
+    - [Hosting Slides on GitHub Pages](#/6/8)
+    - [Public vs Private Repos and Ways to Share Slides](#/6/10)
+    - [Managing Large Files with Git LFS](#/6/13)
+    - [Additional Information](#/6/16)
+      - [What is Reveal.js?](#/6/17)
+      - [HTML File](#/6/18)
+      - [CSS File](#/6/19)
+      - [Markdown File](#/6/20)
+      - [JSON File](#/6/21)
 
 </div>
 
@@ -816,6 +817,33 @@ To change the theme, edit index.html and modify this line:
 
 You can try other themes like white.css, 
 night.css, moon.css,etc.
+
+--
+
+# Transition Between Slides
+
+### Option 1: Set Globally in the Reveal Configuration (index.html)
+
+<pre><code class="language-html" data-trim>
+<script>
+  Reveal.initialize({
+    transition: 'fade', // or 'slide', 'convex', 'concave', 'zoom', 'none'
+    transitionSpeed: 'default' // 'fast', 'slow', or 'default'
+  });
+</script>
+</code></pre>
+
+### Option 2: Per Slide with data-transmition in the Markdown File
+
+<pre><code class="language-bash" data-trim>
+&lt;!-- .slide: data-transition="zoom" --&gt;
+</code></pre>
+
+### Or for vertical slides
+
+<pre><code class="language-bash" data-trim>
+&lt;!-- .slide: data-transition="fade-in slide-out" --&gt;
+</code></pre>
 
 --
 
