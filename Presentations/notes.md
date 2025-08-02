@@ -38,12 +38,16 @@ Nikolaos Vlachogiannakis, 2025
 <div style="flex: 1;">
 
 4. [Advanced Workflow](#/5)
-    - [...](#/5)
-    - [Additional Information](#/5)
-      - [What is pre-commit?](#/5)
-      - [Why use pre-commit?](#/5)
-      - [Common Tools](#/5)
-      - [How It Works](#/5)
+    - [Step By Step Process](#/5/1)
+    - [Create Documentation using Sphinx](#/5/10)
+    - [Additional Information](#/5/14)
+      - [What is pre-commit?](#/5/15)
+      - [Why use pre-commit?](#/5/16)
+      - [Common Tools](#/5/17)
+      - [How pre-commit works](#/5/18)
+      - [What is Python REPL](#/5/19)
+      - [YAML File](#/5/20)
+      - [What is Traceback?](#/5/21)
 
 </div>
 
@@ -59,7 +63,7 @@ Nikolaos Vlachogiannakis, 2025
     - [Public vs Private Repos and Ways to Share Slides](#/6/9)
     - [Managing Large Files with Git LFS](#/6/12)
     - [Additional Information](#/6/15)
-      - [What is Reveal.js](#/6/16)
+      - [What is Reveal.js?](#/6/16)
       - [HTML File](#/6/17)
       - [CSS File](#/6/18)
       - [Markdown File](#/6/19)
@@ -77,29 +81,33 @@ Nikolaos Vlachogiannakis, 2025
 
 <div style="flex: l;">
 
-6. [Store images as PDFs](#/7)
-    - [On Windows](#/7/1)
-    - [On Linux](#/7/2)
+6. [Git Commands](#/7)
+    - [Version Control](#/7/1)
+    - [Branching & Merging](#/7/12)
+    - [Bug Tracking & Fixing](#/7/23)
+    - [Git Hooks (Automation)](#/7/34)
 
-7. [Cheat Sheet](#/8)
-    - [File & Directory Management](#/8/1)
-    - [File Viewing & Editing](#/8/2)
-    - [Search & Navigation](#/8/3)
-    - [System Utilities](#/8/4)
-    - [Package Management(APT)](#/8/5)
-    - [Python & pyenv](#/8/6)
-    - [SSH & Remote Access](#/8/7)
-    - [FTP & File Transfer](#/8/8)
-    - [Shortcuts](#/8/9)
-    - [Git Essentials - Part 1](#/8/10)
-    - [Git Essentials - Part 2](#/8/11)
+7. [Store images as PDFs](#/8)
+    - [On Windows](#/8/1)
+    - [On Linux](#/8/2)
 
 </div>
 
 <div style="flex: l">
 
-8. [Git History & Stuff](#/9)
-    - [Work in progress](#/9)
+8. [Cheat Sheet](#/9)
+    - [File & Directory Management](#/9/1)
+    - [File Viewing & Editing](#/9/2)
+    - [Search & Navigation](#/9/3)
+    - [System Utilities](#/9/4)
+    - [Package Management(APT)](#/9/5)
+    - [Python & pyenv](#/9/6)
+    - [SSH & Remote Access](#/9/7)
+    - [FTP & File Transfer](#/9/8)
+    - [Shortcuts](#/9/9)
+    - [Git Essentials - Part 1](#/9/10)
+    - [Git Essentials - Part 2](#/9/11)
+
 </div>
 
 </div>
@@ -478,71 +486,157 @@ configurations.
 
 # Advanced Workflow
 
-Create a well-organized Python project using Poetry, adding tools to improve code quality, debugging, interactivity and documentation, while keeping dependencies cleanly grouped into dev and docs environments
+Create a well-organized Python project using Poetry, adding tools to improve code 
+quality, debugging, interactivity and documentation, while keeping dependencies cleanly 
+grouped into dev and docs environments
 
 --
 
-1. At first we use the following command:
+## Inside the project path
 
-<pre><code class="language-bash" data-trim>
+1. Download and add <span style="color:skyblue">pre-commit</span> - a tool that 
+automatically runs checks like formatting or linting before you commit code - into your 
+project using Poetry. The <span style="color:skyblue">--group dev</span> flag tells 
+Poetry not to include pre-commit in your project's main dependencies. Instead, it places
+ it under <span style="color:skyblue">[tool.poetry.group.dev.dependencies]</span> in 
+your project.toml (pre-commit = "^x.y.z"). This means it's used only during 
+development - not needed by users who install your package in production.
+
+<pre ><code class="language-bash" data-trim>
 poetry add --group dev pre-commit
 </code></pre>
 
-which:
-- Downloads and adds <span style="color:skyblue">pre-commit</dev> - a tool that automatically runs checks like formatting or linting before you commit code - into your project using Poetry.
-- The <span style="color:skyblue">--group dev</dev> flag tells Poetry not to include pre-commit in your project's main (runtime) dependencies. Instead, it places it under:
-
-<pre><code class="language-python" data-trim>
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^x.y.z"
-</code></pre>
-
-in your project.toml. This means it's used only during development - not needed by users who install your package in production.
-
-## Why use this?
+### Why use this?
 
 - Keeps your production environment clean
 - Makes it easy to separate tools like formatters, linters and test runners
 - Supports installing only specific groups:
-  - <span style="color:skyblue">poerty install --with dev</dev> -> includes dev tools
-  - <span style="color:skyblue">poertry install --without dev</div> -> skips them for lightweight builds
+  - <span style="color:skyblue">poerty install --with dev</span> &rArr; includes dev 
+  tools
+  - <span style="color:skyblue">poertry install --without dev</span> &rArr; skips them 
+  for lightweight builds
 
 --
 
-2. Then we activate the Poetry virtual environment, where we can run installed packages (like pre-commit) directly.
+2. Then we activate the Poetry virtual environment, where we can run installed packages 
+(like pre-commit) directly.
 
-<pre><code class="language-python">
+<pre><code class="language-bash" data-trim>
 poetry shell
+</code></pre>
+
+# OR
+
+Activate the same virtual environment manually. This is redundant if you've already 
+used poetry shell.
+
+<pre><code class="language-bash" data-trim>
+.../project-...-py3.11/bin/activate
 </code></pre>
 
 --
 
-3. Install bpython, a fancy interactive Python REPL (alternative to python), as a dev tool
+3. Install <span style="color:skyblue">bpython</span>, a fancy interactive Python REPL 
+(alternative to python), as a dev tool
 
-<pre><code class="language-python">
+<pre><code class="language-bash" data-trim>
 poetry add --group dev bpython
 </code></pre>
 
 --
 
-4. Install pretty-errors, a package that makes Pyhton tracebacks more readable.
+4. Install <span style="color:skyblue">pretty-errors</span>, a package that makes Pyhton
+ tracebacks more readable.
 
-<pre><code class="language-python">
+<pre><code class="language-bash" data-trim>
 poetry add --group dev pretty-errors
-</code></pre>
-
-5. Activate pretty-errors for the current terminal session. Makes Python errors and tracebacks prettier.
-
-<pre><code class="language-python">
-python3 -m pretty_errors
 </code></pre>
 
 --
 
-6. Install the Git hook (.git/hooks/pre-commit). After this, every git commit will automatically run the checks defined in .pre-commit-config.yaml
+5. Activate pretty-errors for the current terminal session. Makes Python errors and 
+tracebacks prettier.
 
-<pre><code class="language-python">
+<pre><code class="language-bash" data-trim>
+python3 -m pretty_errors
+</code></pre>
+
+In the Options that will appear Press on this first the number 1 and for the second the 
+number 2.
+
+--
+
+6. Install the Git hook (.git/hooks/pre-commit). After this, every git commit will 
+automatically run the checks defined in .pre-commit-config.yaml
+
+<pre><code class="language-bash" data-trim>
 pre-commit install
+</code></pre>
+
+--
+
+7. List the pre-commit Git hook file, confirming it has been installed. 
+(<span style="color:skyblue">Optional</span>)
+
+<pre><code class="language-bash" data-trim>
+ls .git/hooks/pre-commit
+</code></pre>
+
+--
+
+8. Show the contents of the pre-commit hook file (a shell script that runs pre-commit)
+
+<pre><code class="language-bash" data-trim>
+cat .git/hooks/pre-commit
+</code></pre>
+
+--
+
+9. Run all configured pre-commit hooks on all files, not just changed ones. It is useful
+ for validating the entire project upfront.
+
+<pre><code class="language-bash" data-trim>
+pre-commit run --all-files
+</code></pre>
+
+--
+
+# Create Documentation using Sphinx
+
+--
+
+10. Install documentation-related tools:
+    - <span style="color:skyblue">myst-parser</span>: for Markdown support in Sphinx
+    - <span style="color:skyblue">numpydoc</span>: parses NumPy-style docstrings
+    - <span style="color:skyblue">sphinx</span>: the main documentation generator
+    - <span style="color:skyblue">sphinx-math-dollar</span>: support for math in 
+    Markdown using $...$
+    - <span style="color:skyblue">sphinx-rtd-theme</span>: the Read the Docs theme for 
+    docs
+
+<pre><code class="language-bash" data-trim>
+poetry add --group docs myst-parser numpydoc sphinx sphinx-math-dollar sphinx-rtd-theme
+</code></pre>
+
+--
+
+11. Enter the docs/ directory
+
+<pre><code class="language-bash" data-trim>
+cd docs
+</code></pre>
+
+--
+
+12. Build the Sphinx documentation in HTML format using a custom Makefile target 
+(html-all).
+If this is a custom Makefile, the command could:
+- Build all doc pages
+- Run validation
+- Include Markdown and reStructuredText files
+
+<pre><code class="language-bash" data-trim>
+make html-all
 </code></pre>
 
 --
@@ -601,7 +695,7 @@ consistency checks
 
 --
 
-# How It Works
+# How pre-commit works
 
 When you install and configure <span style="color:skyblue">pre-commit</span>, it creates
  a Git hook at <span style="color:skyblue">.git/hooks/pre-commit</span>. When you run 
@@ -612,6 +706,45 @@ When you install and configure <span style="color:skyblue">pre-commit</span>, it
 2. Fails the commit if any tool fails
 
 3. Lets the commit succeed if everything passes
+
+--
+
+## What is Python REPL (Read-Eval-Print Loop)
+
+It's an interactive Python shell you get when you run:
+
+<pre><code class="language-bash" data-trim>
+python
+</code></pre>
+
+You can:
+
+- Type code line by line
+- See results instantly
+- Test, debug etc.
+
+### Better REPLs:
+
+- bpython - colorful, autocompletion
+- ipython - powerful, rich features
+
+--
+
+# YAML File
+
+A <span style="color:skyblue">.yaml</span> file is a human-readable text file used to 
+store configuration or structurred data. It uses indentation to represent hierarchy and 
+is common in tools like Docker, GitHub Actions and pre-commit. It's simple, clean and 
+easy for both humans and machines to read.
+
+--
+
+# What is Traceback?
+
+A <span style="color:skyblue">traceback</span> is the error message Python shows when 
+your code crashes. It includes a list of function calls that led to the error, showing 
+where and why it happened. It helps you debug by pointing to the exact line and file 
+that caused the exception.
 
 ---
 
@@ -917,6 +1050,501 @@ edit slides without touching HTML.
 data or configuration for the presentation.
 - It can define metadata, timing, or slide-related data that JavaScript in the HTML file
  can read and use.
+
+---
+
+# Git Commands
+
+--
+
+## I. Version Control
+
+--
+
+### 1. `git init`
+
+Initializes a new Git repository in the current directory.
+
+```bash
+git init
+```
+
+**Use**: Start tracking version history for a new or existing project.
+
+--
+
+### 2. `git clone`
+
+Copies a repository from a remote source.
+
+```bash
+git clone https://github.com/user/repo.git
+```
+
+**Use**: Download a full copy of a repository.
+
+--
+
+### 3. `git status`
+
+Displays the state of the working directory and staging area.
+
+```bash
+git status
+```
+
+**Use**: Check which files are staged, modified, or untracked.
+
+--
+
+### 4. `git add`
+
+Stages changes to be committed.
+
+```bash
+git add file.txt
+# or add all
+git add .
+```
+
+**Use**: Prepare changes for committing.
+
+--
+
+### 5. `git commit`
+
+Saves staged changes to the repository history.
+
+```bash
+git commit -m "Add login functionality"
+```
+
+**Use**: Record a snapshot of your changes.
+
+--
+
+### 6. `git log`
+
+Shows the commit history.
+
+```bash
+git log
+# or condensed
+git log --oneline
+```
+
+**Use**: View past commits.
+
+--
+
+### 7. `git diff`
+
+Shows changes between working directory and index.
+
+```bash
+git diff
+# for staged changes
+git diff --staged
+```
+
+**Use**: See what has been modified.
+
+--
+
+### 8. `git config`
+
+Sets user config values.
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your@example.com"
+```
+
+**Use**: Identify the author of commits.
+
+--
+
+### 9. `git rm`
+
+Removes a file from the working directory and staging area.
+
+```bash
+git rm oldfile.txt
+```
+
+**Use**: Track file deletion in version history.
+
+--
+
+### 10. `git mv`
+
+Renames or moves a file.
+
+```bash
+git mv oldname.txt newname.txt
+```
+
+**Use**: Maintain history when renaming files.
+
+--
+
+## II. Branching and Merging
+
+--
+
+### 11. `git branch`
+
+Lists, creates, or deletes branches.
+
+```bash
+git branch
+# create a new branch
+git branch feature-x
+```
+
+**Use**: Manage different lines of development.
+
+--
+
+### 12. `git checkout`
+
+Switches branches or restores files.
+
+```bash
+git checkout feature-x
+# or create and switch
+git checkout -b new-feature
+```
+
+**Use**: Move between branches.
+
+--
+
+### 13. `git switch`
+
+A simpler alternative to `checkout` for switching branches.
+
+```bash
+git switch main
+```
+
+**Use**: Modern method for changing branches.
+
+--
+
+### 14. `git merge`
+
+Merges changes from one branch into another.
+
+```bash
+git checkout main
+git merge feature-x
+```
+
+**Use**: Integrate completed features.
+
+--
+
+### 15. `git rebase`
+
+Reapplies commits on top of another base branch.
+
+```bash
+git checkout feature-x
+git rebase main
+```
+
+**Use**: Clean linear history.
+
+--
+
+### 16. `git stash`
+
+Temporarily shelves changes.
+
+```bash
+git stash
+# apply them later
+git stash apply
+```
+
+**Use**: Save unfinished changes without committing.
+
+--
+
+### 17. `git tag`
+
+Creates tags for marking releases or important commits.
+
+```bash
+git tag v1.0.0
+```
+
+**Use**: Mark specific points in history.
+
+--
+
+### 18. `git cherry-pick`
+
+Applies a commit from one branch to another.
+
+```bash
+git cherry-pick abc1234
+```
+
+**Use**: Apply specific changes without merging full branch.
+
+--
+
+### 19. `git pull`
+
+Fetches and integrates from a remote repository.
+
+```bash
+git pull origin main
+```
+
+**Use**: Update your branch with the latest changes.
+
+--
+
+### 20. `git push`
+
+Uploads local commits to a remote repository.
+
+```bash
+git push origin main
+```
+
+**Use**: Share your changes with others.
+
+--
+
+## III. Bug Tracking and Fixing
+
+--
+
+### 21. `git blame`
+
+Shows which commit and author last modified each line.
+
+```bash
+git blame index.js
+```
+
+**Use**: Trace the origin of code changes.
+
+--
+
+### 22. `git revert`
+
+Creates a new commit that undoes changes from a previous one.
+
+```bash
+git revert abc1234
+```
+
+**Use**: Safely undo commits.
+
+--
+
+### 23. `git reset`
+
+Resets HEAD and optionally working directory/index.
+
+```bash
+git reset --soft HEAD~1
+# or hard reset
+git reset --hard HEAD~1
+```
+
+**Use**: Undo local commits.
+
+--
+
+### 24. `git bisect`
+
+Binary search to find which commit introduced a bug.
+
+```bash
+git bisect start
+git bisect bad
+git bisect good abc1234
+```
+
+**Use**: Locate the commit that caused a regression.
+
+--
+
+### 25. `git show`
+
+Displays information about a specific commit.
+
+```bash
+git show abc1234
+```
+
+**Use**: Examine commit details and diff.
+
+--
+
+### 26. `git reflog`
+
+Records changes to HEAD for recovery.
+
+```bash
+git reflog
+```
+
+**Use**: Restore lost commits or branches.
+
+--
+
+### 27. `git clean`
+
+Removes untracked files or directories.
+
+```bash
+git clean -fd
+```
+
+**Use**: Clean up working directory.
+
+--
+
+### 28. `git log -p`
+
+Shows each commit along with the patch.
+
+```bash
+git log -p
+```
+
+**Use**: See exactly what was changed.
+
+--
+
+### 29. `git diff <branch1>..<branch2>`
+
+Shows differences between two branches.
+
+```bash
+git diff main..feature-x
+```
+
+**Use**: Compare changes between branches.
+
+--
+
+### 30. `git shortlog`
+
+Summarizes commit history by author.
+
+```bash
+git shortlog -sn
+```
+
+**Use**: See who contributed and how much.
+
+--
+
+## IV. Git Hooks (Automation)
+
+Git hooks are scripts triggered by Git actions like commit, push, or merge. They help 
+automate tasks such as linting, testing, or enforcing policy.
+
+--
+
+### 31. `pre-commit`
+
+Runs before a commit is finalized.
+
+```bash
+#!/bin/sh
+echo "Running pre-commit checks..."
+```
+
+**Use**: Lint or test code before committing.
+
+--
+
+### 32. `prepare-commit-msg`
+
+Edits the default commit message before the editor is launched.
+
+```bash
+#!/bin/sh
+echo "[AUTO-LOG] " >> $1
+```
+
+**Use**: Add default messages or tags.
+
+--
+
+### 33. `commit-msg`
+
+Validates or modifies the commit message.
+
+```bash
+#!/bin/sh
+if ! grep -qE 'JIRA-[0-9]+' "$1"; then
+  echo "ERROR: Commit message must include a JIRA ID"
+  exit 1
+fi
+```
+
+**Use**: Enforce commit message rules.
+
+--
+
+### 34. `post-commit`
+
+Executes after a successful commit.
+
+```bash
+#!/bin/sh
+echo "Commit successful!"
+```
+
+**Use**: Notifications or logging.
+
+--
+
+### 35. `pre-push`
+
+Runs before pushing to a remote.
+
+```bash
+#!/bin/sh
+npm test || exit 1
+```
+
+**Use**: Prevent broken code from being pushed.
+
+--
+
+### 36. `post-merge`
+
+Runs after a merge completes.
+
+```bash
+#!/bin/sh
+echo "Merged successfully! Run build..."
+```
+
+**Use**: Rebuild project or install dependencies.
+
+--
+
+### 37. Installing a Git Hook
+
+Git hooks live in the `.git/hooks/` directory. You must make them executable:
+
+```bash
+chmod +x .git/hooks/pre-commit
+```
+
+**Use**: Enable and manage automation workflows.
 
 ---
 
