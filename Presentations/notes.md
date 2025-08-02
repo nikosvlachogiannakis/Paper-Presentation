@@ -478,9 +478,72 @@ configurations.
 
 # Advanced Workflow
 
+Create a well-organized Python project using Poetry, adding tools to improve code quality, debugging, interactivity and documentation, while keeping dependencies cleanly grouped into dev and docs environments
+
 --
 
+1. At first we use the following command:
 
+<pre><code class="language-bash" data-trim>
+poetry add --group dev pre-commit
+</code></pre>
+
+which:
+- Downloads and adds <span style="color:skyblue">pre-commit</dev> - a tool that automatically runs checks like formatting or linting before you commit code - into your project using Poetry.
+- The <span style="color:skyblue">--group dev</dev> flag tells Poetry not to include pre-commit in your project's main (runtime) dependencies. Instead, it places it under:
+
+<pre><code class="language-python" data-trim>
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^x.y.z"
+</code></pre>
+
+in your project.toml. This means it's used only during development - not needed by users who install your package in production.
+
+## Why use this?
+
+- Keeps your production environment clean
+- Makes it easy to separate tools like formatters, linters and test runners
+- Supports installing only specific groups:
+  - <span style="color:skyblue">poerty install --with dev</dev> -> includes dev tools
+  - <span style="color:skyblue">poertry install --without dev</div> -> skips them for lightweight builds
+
+--
+
+2. Then we activate the Poetry virtual environment, where we can run installed packages (like pre-commit) directly.
+
+<pre><code class="language-python">
+poetry shell
+</code></pre>
+
+--
+
+3. Install bpython, a fancy interactive Python REPL (alternative to python), as a dev tool
+
+<pre><code class="language-python">
+poetry add --group dev bpython
+</code></pre>
+
+--
+
+4. Install pretty-errors, a package that makes Pyhton tracebacks more readable.
+
+<pre><code class="language-python">
+poetry add --group dev pretty-errors
+</code></pre>
+
+5. Activate pretty-errors for the current terminal session. Makes Python errors and tracebacks prettier.
+
+<pre><code class="language-python">
+python3 -m pretty_errors
+</code></pre>
+
+--
+
+6. Install the Git hook (.git/hooks/pre-commit). After this, every git commit will automatically run the checks defined in .pre-commit-config.yaml
+
+<pre><code class="language-python">
+pre-commit install
+</code></pre>
 
 --
 
