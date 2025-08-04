@@ -6,7 +6,7 @@ Nikolaos Vlachogiannakis, 2025
 
 ---
 
-## Table of Contents
+# Table of Contents
 
 --
 
@@ -57,8 +57,8 @@ Nikolaos Vlachogiannakis, 2025
     - [Install Node.js](#/6/1)
     - [Get a Template](#/6/2)
     - [Change Theme](#/6/4)
-    - [Transition Between Slides](#/6/5)
-    - [Change Presentations with the same template](#/6/6)
+    - [Slides Transition](#/6/5)
+    - [Change Presentations](#/6/6)
     - [Load Slides Locally](#/6/7)
     - [Hosting Slides on GitHub Pages](#/6/8)
     - [Public vs Private Repos and Ways to Share Slides](#/6/10)
@@ -749,6 +749,14 @@ that caused the exception.
 
 ---
 
+# Advanced Workflow Better
+
+--
+
+
+
+---
+
 # Reveal.js Presentation
 
 --
@@ -1093,9 +1101,9 @@ data or configuration for the presentation.
 
 Initializes a new Git repository in the current directory.
 
-```bash
+<pre><code class="language-bash" data-trim> 
 git init
-```
+</code></pre>
 
 **Use**: Start tracking version history for a new or existing project.
 
@@ -1105,9 +1113,9 @@ git init
 
 Copies a repository from a remote source.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git clone https://github.com/user/repo.git
-```
+</code></pre>
 
 **Use**: Download a full copy of a repository.
 
@@ -1117,9 +1125,9 @@ git clone https://github.com/user/repo.git
 
 Displays the state of the working directory and staging area.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git status
-```
+</code></pre>
 
 **Use**: Check which files are staged, modified, or untracked.
 
@@ -1129,11 +1137,11 @@ git status
 
 Stages changes to be committed.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git add file.txt
 # or add all
 git add .
-```
+</code></pre>
 
 **Use**: Prepare changes for committing.
 
@@ -1143,9 +1151,9 @@ git add .
 
 Saves staged changes to the repository history.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git commit -m "Add login functionality"
-```
+</code></pre>
 
 **Use**: Record a snapshot of your changes.
 
@@ -1155,11 +1163,11 @@ git commit -m "Add login functionality"
 
 Shows the commit history.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git log
 # or condensed
 git log --oneline
-```
+</code></pre>
 
 **Use**: View past commits.
 
@@ -1169,11 +1177,11 @@ git log --oneline
 
 Shows changes between working directory and index.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git diff
 # for staged changes
 git diff --staged
-```
+</code></pre>
 
 **Use**: See what has been modified.
 
@@ -1183,10 +1191,10 @@ git diff --staged
 
 Sets user config values.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git config --global user.name "Your Name"
 git config --global user.email "your@example.com"
-```
+</code></pre>
 
 **Use**: Identify the author of commits.
 
@@ -1196,9 +1204,9 @@ git config --global user.email "your@example.com"
 
 Removes a file from the working directory and staging area.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git rm oldfile.txt
-```
+</code></pre>
 
 **Use**: Track file deletion in version history.
 
@@ -1208,9 +1216,9 @@ git rm oldfile.txt
 
 Renames or moves a file.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git mv oldname.txt newname.txt
-```
+</code></pre>
 
 **Use**: Maintain history when renaming files.
 
@@ -1224,11 +1232,11 @@ git mv oldname.txt newname.txt
 
 Lists, creates, or deletes branches.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git branch
 # create a new branch
 git branch feature-x
-```
+</code></pre>
 
 **Use**: Manage different lines of development.
 
@@ -1238,11 +1246,11 @@ git branch feature-x
 
 Switches branches or restores files.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git checkout feature-x
 # or create and switch
 git checkout -b new-feature
-```
+</code></pre>
 
 **Use**: Move between branches.
 
@@ -1252,9 +1260,9 @@ git checkout -b new-feature
 
 A simpler alternative to `checkout` for switching branches.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git switch main
-```
+</code></pre>
 
 **Use**: Modern method for changing branches.
 
@@ -1264,10 +1272,10 @@ git switch main
 
 Merges changes from one branch into another.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git checkout main
 git merge feature-x
-```
+</code></pre>
 
 **Use**: Integrate completed features.
 
@@ -1277,10 +1285,10 @@ git merge feature-x
 
 Reapplies commits on top of another base branch.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git checkout feature-x
 git rebase main
-```
+</code></pre>
 
 **Use**: Clean linear history.
 
@@ -1290,11 +1298,11 @@ git rebase main
 
 Temporarily shelves changes.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git stash
 # apply them later
 git stash apply
-```
+</code></pre>
 
 **Use**: Save unfinished changes without committing.
 
@@ -1304,9 +1312,9 @@ git stash apply
 
 Creates tags for marking releases or important commits.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git tag v1.0.0
-```
+</code></pre>
 
 **Use**: Mark specific points in history.
 
@@ -1316,9 +1324,9 @@ git tag v1.0.0
 
 Applies a commit from one branch to another.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git cherry-pick abc1234
-```
+</code></pre>
 
 **Use**: Apply specific changes without merging full branch.
 
@@ -1328,9 +1336,9 @@ git cherry-pick abc1234
 
 Fetches and integrates from a remote repository.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git pull origin main
-```
+</code></pre>
 
 **Use**: Update your branch with the latest changes.
 
@@ -1340,9 +1348,9 @@ git pull origin main
 
 Uploads local commits to a remote repository.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git push origin main
-```
+</code></pre>
 
 **Use**: Share your changes with others.
 
@@ -1356,9 +1364,9 @@ git push origin main
 
 Shows which commit and author last modified each line.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git blame index.js
-```
+</code></pre>
 
 **Use**: Trace the origin of code changes.
 
@@ -1368,9 +1376,9 @@ git blame index.js
 
 Creates a new commit that undoes changes from a previous one.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git revert abc1234
-```
+</code></pre>
 
 **Use**: Safely undo commits.
 
@@ -1380,11 +1388,11 @@ git revert abc1234
 
 Resets HEAD and optionally working directory/index.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git reset --soft HEAD~1
 # or hard reset
 git reset --hard HEAD~1
-```
+</code></pre>
 
 **Use**: Undo local commits.
 
@@ -1394,11 +1402,11 @@ git reset --hard HEAD~1
 
 Binary search to find which commit introduced a bug.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git bisect start
 git bisect bad
 git bisect good abc1234
-```
+</code></pre>
 
 **Use**: Locate the commit that caused a regression.
 
@@ -1408,9 +1416,9 @@ git bisect good abc1234
 
 Displays information about a specific commit.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git show abc1234
-```
+</code></pre>
 
 **Use**: Examine commit details and diff.
 
@@ -1420,9 +1428,9 @@ git show abc1234
 
 Records changes to HEAD for recovery.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git reflog
-```
+</code></pre>
 
 **Use**: Restore lost commits or branches.
 
@@ -1432,9 +1440,9 @@ git reflog
 
 Removes untracked files or directories.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git clean -fd
-```
+</code></pre>
 
 **Use**: Clean up working directory.
 
@@ -1444,9 +1452,9 @@ git clean -fd
 
 Shows each commit along with the patch.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git log -p
-```
+</code></pre>
 
 **Use**: See exactly what was changed.
 
@@ -1456,9 +1464,9 @@ git log -p
 
 Shows differences between two branches.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git diff main..feature-x
-```
+</code></pre>
 
 **Use**: Compare changes between branches.
 
@@ -1468,9 +1476,9 @@ git diff main..feature-x
 
 Summarizes commit history by author.
 
-```bash
+<pre><code class="language-bash" data-trim>
 git shortlog -sn
-```
+</code></pre>
 
 **Use**: See who contributed and how much.
 
@@ -1487,10 +1495,10 @@ automate tasks such as linting, testing, or enforcing policy.
 
 Runs before a commit is finalized.
 
-```bash
+<pre><code class="language-bash" data-trim>
 #!/bin/sh
 echo "Running pre-commit checks..."
-```
+</code></pre>
 
 **Use**: Lint or test code before committing.
 
@@ -1500,10 +1508,10 @@ echo "Running pre-commit checks..."
 
 Edits the default commit message before the editor is launched.
 
-```bash
+<pre><code class="language-bash" data-trim>
 #!/bin/sh
 echo "[AUTO-LOG] " >> $1
-```
+</code></pre>
 
 **Use**: Add default messages or tags.
 
@@ -1513,13 +1521,13 @@ echo "[AUTO-LOG] " >> $1
 
 Validates or modifies the commit message.
 
-```bash
+<pre><code class="language-bash" data-trim>
 #!/bin/sh
 if ! grep -qE 'JIRA-[0-9]+' "$1"; then
   echo "ERROR: Commit message must include a JIRA ID"
   exit 1
 fi
-```
+</code></pre>
 
 **Use**: Enforce commit message rules.
 
@@ -1529,10 +1537,10 @@ fi
 
 Executes after a successful commit.
 
-```bash
+<pre><code class="language-bash" data-trim>
 #!/bin/sh
 echo "Commit successful!"
-```
+</code></pre>
 
 **Use**: Notifications or logging.
 
@@ -1542,10 +1550,10 @@ echo "Commit successful!"
 
 Runs before pushing to a remote.
 
-```bash
+<pre><code class="language-bash" data-trim>
 #!/bin/sh
 npm test || exit 1
-```
+</code></pre>
 
 **Use**: Prevent broken code from being pushed.
 
@@ -1555,10 +1563,10 @@ npm test || exit 1
 
 Runs after a merge completes.
 
-```bash
+<pre><code class="language-bash" data-trim>
 #!/bin/sh
 echo "Merged successfully! Run build..."
-```
+</code></pre>
 
 **Use**: Rebuild project or install dependencies.
 
@@ -1568,9 +1576,9 @@ echo "Merged successfully! Run build..."
 
 Git hooks live in the `.git/hooks/` directory. You must make them executable:
 
-```bash
+<pre><code class="language-bash" data-trim>
 chmod +x .git/hooks/pre-commit
-```
+</code></pre>
 
 **Use**: Enable and manage automation workflows.
 
@@ -1788,4 +1796,8 @@ convert screenshot.png screenshot.pdf
 
 ---
 
-# 🦧 That is all 🦧
+# That is all!
+
+Include a machine learning cheatsheet image from LinkedIn
+
+Check what is saved on LinkedIn
