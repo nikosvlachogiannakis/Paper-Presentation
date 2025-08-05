@@ -225,13 +225,16 @@ repo.
 
 # 3. Using GitHub CLI (gh)
 
-The installer, after successful installation of gh(install shell repo and gh will be installed too), asks for a token. Follow the link and create a token with the proposed permissions. After this action 
-you can use gh to do things in Github. The next step creates a new ssh key and uploads 
-it to Github using the gh tool. Instead of copying the contents of the pub file, going 
-to Github settings and creating a new key entry, this is done automatically using gh.
-
+- Install [GitHub CLI](https://github.com/cli). 
+After successful installation of gh(install shell repo and gh will be installed too), 
+asks for a token. Follow the link and create a token with the proposed permissions. 
+After this action you can use gh to do things in Github. The next step creates a new 
+ssh key and uploads it to Github using the gh tool. Instead of copying the contents of 
+the pub file, going to Github settings and creating a new key entry, this is done 
+automatically using gh.
 - Connect it to you GitHub with 
-<code class="language-bash" data-trim>gh auth login</code> and follow the promts
+<code class="language-bash" style="display: inline-block;background: #222;" data-trim>gh
+ auth login</code> and follow the promts
 - To create a new repo in the current folder, do:
 <pre><code class="language-bash" data-trim>
 git init
@@ -753,7 +756,324 @@ that caused the exception.
 
 --
 
+# Pre-commits
 
+Pre-commits are scripts that run automatically before a commit is made. These can be 
+used to ensure code quality by running linters, formatters, and other checks on the 
+codebase.
+
+--
+
+# Install & Set Up
+
+Inside your project:
+
+<pre><code class="language-bash" data-trim>
+poetry add pre-commit
+pre-commit install
+</code></pre>
+
+This adds the .pre-commit-config.yaml file, where you define the hooks you want to run.
+
+# Example Configuration
+
+Example of a .pre-commit-config.yaml file:
+
+<pre><code class="language-yaml" data-trim>
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+  - repo: https://github.com/psf/black
+    rev: 21.12b0
+    hooks:
+      - id: black
+</code></pre>
+
+--
+
+# Usage
+
+- Stage files you want to commit
+- Run all hooks against all files: 
+<code class="language-bash" style="display: inline-block;background: #222;">
+pre-commit run --all-files</code>
+
+- Run hooks only on changed files: 
+<code class="language-bash" style="display: inline-block;background: #222;">
+pre-commit run</code>
+
+- Update pre-commit hooks: 
+<code class="language-bash" style="display: inline-block;background: #222;">
+pre-commit autoupdate</code>
+
+- If you run git commit with pre-commits and files are modified by hooks, commit will be
+ aborted. You need to:
+  - Stage them again
+  - Commit them
+
+--
+
+# Linters
+
+Analyze the code for syntax, style and potential bugs. Catch issues like:
+
+- Unused variables
+- Wrong import order
+- Missing docstrings
+
+# Formatters
+
+Automatically reformat code to follow a consistent style.
+
+- Identation
+- Quote style
+- Line breaks
+- Comma placements
+
+Linters and formatters get their config from 
+<code class="language-bash" style="display: inline-block;background: #222;">
+pyproject.toml</code>
+
+--
+
+# Example Configuration
+
+<pre><code style="max-height: none; overflow: visible;" class="language-toml" data-trim>
+[tool.ruff]
+exclude = ["docs"]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+ignore = [
+  # pylint
+  # No pylints
+  # ruff
+  "RUF001",
+  # flake8-bandit
+  "S101",
+  ...
+  "ISC001",
+  "N806",
+  "N803",
+  "SLF001"
+]
+select = ["ALL"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+</code></pre>
+
+--
+
+# NumPy Docstrings
+
+NumPy docstrings follow a specific format to ensure consistency and clarity. Here's a 
+basic template for writing NumPy-style docstrings:
+
+<pre><code class="language-python" data-trim>
+def example_function(param1, param2):
+    """
+    Brief summary of the function.
+
+    Extended description of the function, which can cover
+    multiple lines and provide more detailed information.
+
+    Parameters
+    ----------
+    param1 : int
+        Description of the first parameter.
+    param2 : str
+        Description of the second parameter.
+
+    Returns
+    -------
+    bool
+        Description of the return value.
+
+    Raises
+    ------
+    ValueError
+        If `param1` is not a positive integer.
+
+    See Also
+    --------
+    related_function : Description of related function.
+    
+    Notes
+    -----
+    Additional notes about the function, its usage, or implementation details.
+
+    Examples
+    --------
+    >>> example_function(3, 'test')
+    True
+    """
+
+    if param1 <= 0:
+        raise ValueError("param1 must be a positive integer")
+    # Example function logic
+    return True
+</code></pre>
+
+--
+
+# Key Sections
+
+- **Summary**: A one-line summary that starts with a capital letter and ends with a 
+period.
+
+- **Parameters**: A list of parameters with types and descriptions.
+
+- **Returns**: Description of the return value, including type information.
+
+- **Raises**: Any exceptions that the function may raise and the conditions under which 
+they occur.
+
+- **See Also**: References to related functions or methods within the module.
+
+- **Notes**: Additional information about the function, which may include implementation
+ details.
+
+- **Examples**: Usage examples with the expected output, helpful for understanding 
+function behavior.
+
+--
+
+# Generating Documentation
+
+Assuming you already have numpy docstrings in your code.
+
+--
+
+1. Add necessary packages
+
+<pre><code class="language-bash" data-trim>
+poetry add --group docs numpydoc sphinx sphinx-rtd-theme sphinx-math-dollar myst-parser
+</code></pre>
+
+- numpydoc: Parses NumPy-style docstrings for Sphinx.
+
+- sphinx: Turns reStructuredText or Markdown + docstrings into HTML, LaTeX, PDF, etc.
+
+- sphinx-math-dollar: Allows you to write math equations with LaTeX dollar signs 
+(`$...$` for inline, `$$...$$` for block).
+
+- sphinx-rtd-theme: The [ReadTheDocs theme](https://readthedocs.io/)
+
+- myst-parser: Enables writing docs in Markdown .md instead of .rst
+
+--
+
+2. Set up sphinx in the docs folder of your repo
+
+<pre><code class="language-bash" data-trim>
+poetry run sphinx-quickstart docs
+</code></pre>
+
+Follow prompts on the terminal.
+
+--
+
+3. Configure <span style="color:skyblue">conf.py</span> For example
+
+<pre><code style="max-height: none; overflow: visible;" class="language-bash" data-trim>
+# -- General configuration ---------------------------------------------------
+
+extensions = [
+    "sphinx.ext.autosummary",
+    "sphinx.ext.autodoc",
+    "numpydoc",
+    "sphinx_math_dollar",
+    "sphinx.ext.mathjax",
+    "sphinx_rtd_theme",
+    "myst_parser",  # enables Markdown support via MyST
+]
+
+templates_path = ["_templates"]
+exclude_patterns = []
+
+autosummary_generate = True
+numpydoc_class_members_toctree = False
+
+# -- Options for HTML output -------------------------------------------------
+
+html_theme = "sphinx_rtd_theme"
+
+# -- Options for napoleon extension ------------------------------------------
+napoleon_google_docstring = False
+napoleon_numpy_docstring = True
+</code></pre>
+
+--
+
+4. Autogenerate <span style="color:skyblue">.rst</span> files for your code
+
+<pre><code class="language-bash" data-trim>
+sphinx-apidoc -o docs/source your_module
+</code></pre>
+
+--
+
+5. Include modules into <span style="color:skyblue">index.rst</span> Include something 
+like:
+
+<pre><code class="language-yaml" data-trim>
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference
+
+   your_module # don't forget the indent
+</code></pre>
+
+--
+
+6. Build your documentation
+
+<pre><code class="language-bash" data-trim>
+sphinx-build -b html docs/source docs/build
+</code></pre>
+
+--
+
+# Additional Information
+
+--
+
+# .rst File
+
+An <span style="color:skyblue">.rst</span> file (reStructuredText) is a plain-text 
+markup format commonly used in Python projects for writing documentation.
+
+- Works seamlessly with Sphinx, which converts <span style="color:skyblue">.rst</span> 
+into HTML, PDF, ePub, etc.
+- More powerful than Markdown for large docs: supports cross-references, indexes, 
+advanced tables, math, and extensible directives
+- Standard for many Python libraries because PyPI supports .rst for project descriptions
+
+### Example
+
+<pre><code class="language-typescript" data-trim>
+Project Title
+=============
+
+Features
+--------
+
+* Fast
+* Easy
+
+.. code-block:: python
+
+   print("Hello, World!")
+</code></pre>
 
 ---
 
