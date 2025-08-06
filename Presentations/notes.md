@@ -617,6 +617,11 @@ pre-commit run --all-files
 
 # Create Documentation using Sphinx
 
+<span style="color:skyblue">Sphinx</span> is a documentation generator, most famous in 
+the Python ecosystem.
+
+<span style="color:skyblue">What it does:</span> You write your docs in reStructuredText (.rst) or Markdown, and Sphinx converts them into HTML websites, PDFs, ePubs, man pages, etc.
+
 --
 
 10. Install documentation-related tools:
