@@ -10,7 +10,7 @@ Nikolaos Vlachogiannakis, 2025
 
 --
 
-<div style="display: flex; text-align: left; width: 70vw; margin-left: -12vw;">
+<div style="display: flex; text-align: left; width: 70vw; margin-left: -10vw;">
 
 <div style="flex: 1;">
 
@@ -42,33 +42,42 @@ Nikolaos Vlachogiannakis, 2025
     - [Create Documentation using Sphinx](#/5/10)
     - [Additional Information](#/5/14)
       - [What is pre-commit?](#/5/15)
-      - [Why use pre-commit?](#/5/16)
+      - [Why use it?](#/5/16)
       - [Common Tools](#/5/17)
-      - [How pre-commit works](#/5/18)
-      - [What is Python REPL](#/5/19)
+      - [How it works](#/5/18)
+      - [Python REPL](#/5/19)
       - [YAML File](#/5/20)
-      - [What is Traceback?](#/5/21)
+      - [Traceback](#/5/21)
+5. [Advanced Workflow <span style="color:lime;">Better</span>](#/6)
+    - [Pre-commits](#/6/1)
+    - [Install & Set Up](#/6/2)
+    - [Usage](#/6/3)
+    - [Linters & Formatters](#/6/4)
+    - [Numpy Docstrings](#/6/6)
+    - [Generate Documentation](#/6/8)
+    - [Additional Information](#/6/15)
+      - [.rst File](#/6/16)
 
 </div>
 
 <div style="flex: 1;">
 
-5. [Reveal.js Presentation](#/6)
-    - [Install Node.js](#/6/1)
-    - [Get a Template](#/6/2)
-    - [Change Theme](#/6/4)
-    - [Slides Transition](#/6/5)
-    - [Change Presentations](#/6/6)
-    - [Load Slides Locally](#/6/7)
-    - [Hosting Slides on GitHub Pages](#/6/8)
-    - [Public vs Private Repos and Ways to Share Slides](#/6/10)
-    - [Managing Large Files with Git LFS](#/6/13)
-    - [Additional Information](#/6/16)
-      - [What is Reveal.js?](#/6/17)
-      - [HTML File](#/6/18)
-      - [CSS File](#/6/19)
-      - [Markdown File](#/6/20)
-      - [JSON File](#/6/21)
+6. [Reveal.js Presentation](#/7)
+    - [Install Node.js](#/7/1)
+    - [Get a Template](#/7/2)
+    - [Change Theme](#/7/4)
+    - [Slides Transition](#/7/5)
+    - [Change Presentations](#/7/6)
+    - [Load Slides Locally](#/7/7)
+    - [Hosting Slides on GitHub Pages](#/7/8)
+    - [Public vs Private Repos and Ways to Share Slides](#/7/10)
+    - [Managing Large Files with Git LFS](#/7/13)
+    - [Additional Information](#/7/16)
+      - [What is Reveal.js?](#/7/17)
+      - [HTML File](#/7/18)
+      - [CSS File](#/7/19)
+      - [Markdown File](#/7/20)
+      - [JSON File](#/7/21)
 
 </div>
 
@@ -82,32 +91,33 @@ Nikolaos Vlachogiannakis, 2025
 
 <div style="flex: l;">
 
-6. [Git Commands](#/7)
-    - [Version Control](#/7/1)
-    - [Branching & Merging](#/7/12)
-    - [Bug Tracking & Fixing](#/7/23)
-    - [Git Hooks (Automation)](#/7/34)
+7. [Git Commands](#/8)
+    - [Git Cheatsheet](#/8/1)
+    - [Version Control](#/8/3)
+    - [Branching & Merging](#/8/14)
+    - [Bug Tracking & Fixing](#/8/25)
+    - [Git Hooks (Automation)](#/8/36)
 
-7. [Store images as PDFs](#/8)
-    - [On Windows](#/8/1)
-    - [On Linux](#/8/2)
+8. [Store images as PDFs](#/9)
+    - [On Windows](#/9/1)
+    - [On Linux](#/9/2)
 
 </div>
 
 <div style="flex: l">
 
-8. [Cheat Sheet](#/9)
-    - [File & Directory Management](#/9/1)
-    - [File Viewing & Editing](#/9/2)
-    - [Search & Navigation](#/9/3)
-    - [System Utilities](#/9/4)
-    - [Package Management(APT)](#/9/5)
-    - [Python & pyenv](#/9/6)
-    - [SSH & Remote Access](#/9/7)
-    - [FTP & File Transfer](#/9/8)
-    - [Shortcuts](#/9/9)
-    - [Git Essentials - Part 1](#/9/10)
-    - [Git Essentials - Part 2](#/9/11)
+9. [Cheat Sheet](#/10)
+    - [File & Directory Management](#/10/1)
+    - [File Viewing & Editing](#/10/2)
+    - [Search & Navigation](#/10/3)
+    - [System Utilities](#/10/4)
+    - [Package Management(APT)](#/10/5)
+    - [Python & pyenv](#/10/6)
+    - [SSH & Remote Access](#/10/7)
+    - [FTP & File Transfer](#/10/8)
+    - [Shortcuts](#/10/9)
+    - [Git Essentials - Part 1](#/10/10)
+    - [Git Essentials - Part 2](#/10/11)
 
 </div>
 
@@ -131,7 +141,7 @@ ssh user@remote-server
 
 --
 
-## 1.Generate an SSH key(If you don't have one)
+## 1. Generate an SSH key(If you don't have one)
 
 Locally, on your computer, open Terminal(for Windows, Git Bash):
 
@@ -143,7 +153,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 - Choose no passphrase to enable passwordless login
 
-## 2.Copy the Public Key to the Remote Server
+## 2. Copy the Public Key to the Remote Server
 
 <pre><code class="language-bash" data-trim>
 ssh-copy-id user@remote-server
@@ -151,7 +161,7 @@ ssh-copy-id user@remote-server
 
 --
 
-## 3.Use SSH Config File
+## 3. Use SSH Config File
 Create or edit:
 <pre><code class="language-bash" data-trim>
 ~/.ssh/config
@@ -168,7 +178,7 @@ Now you can simply run:
 ssh myserver
 </code></pre>
 
-## 4.Test the Passwordless SSH Login
+## 4. Test the Passwordless SSH Login
 <pre><code class="language-bash" data-trim>
 ssh user@remote-server
 </code></pre>
@@ -269,13 +279,13 @@ So, we use:
 <pre><code class="language-bash" data-trim>
 git add (all files on red separated by comma)
 </code></pre>
-**OR**
+<span style="color:skyblue">OR</span>
 <pre><code class="language-bash" data-trim>
 git add .
 </code></pre>
 Then:
 <pre><code class="language-bash" data-trim>
-git commit -m "This is a message explaining what we changed"
+git commit -m "This is a message explaining what changes we made"
 </code></pre>
 Finally:
 <pre><code class="language-bash" data-trim>
@@ -798,16 +808,13 @@ repos:
 # Usage
 
 - Stage files you want to commit
-- Run all hooks against all files: 
-<code class="language-bash" style="display: inline-block;background: #222;">
+- Run all hooks against all files: <code class="language-bash" style="display: inline-block; background: #222;">
 pre-commit run --all-files</code>
 
-- Run hooks only on changed files: 
-<code class="language-bash" style="display: inline-block;background: #222;">
+- Run hooks only on changed files: <code class="language-bash" style="display: inline-block; background: #222;">
 pre-commit run</code>
 
-- Update pre-commit hooks: 
-<code class="language-bash" style="display: inline-block;background: #222;">
+- Update pre-commit hooks: <code class="language-bash" style="display: inline-block; background: #222;">
 pre-commit autoupdate</code>
 
 - If you run git commit with pre-commits and files are modified by hooks, commit will be
@@ -835,7 +842,7 @@ Automatically reformat code to follow a consistent style.
 - Comma placements
 
 Linters and formatters get their config from 
-<code class="language-bash" style="display: inline-block;background: #222;">
+<code class="language-bash" style="display: inline-block; background: #222;">
 pyproject.toml</code>
 
 --
@@ -1225,16 +1232,12 @@ You can publish your presentation online for free using GitHub Pages.
 #### **Step-by-Step:**
 
 1. Make sure your repository includes:
-
-- index.html
-- slides.md
-- dist/ and plugin/ folders from Reveal.js
-- empty .nojekyll file(prevents GitHub from using Jekyll)
-
+    - index.html
+    - slides.md
+    - dist/ and plugin/ folders from Reveal.js
+    - empty .nojekyll file(prevents GitHub from using Jekyll)
 2. Go to your GitHub repository -> Settings -> Pages
-
 3. Under Build and Deployment, set:
-
 - Source: Deploy from branch
 - Branch: main
 - Folder: / (root)
@@ -1352,7 +1355,6 @@ git push
 ### ℹ️ Notes
 
 - GitHub’s free LFS plan includes 1 GB of storage and 1 GB/month bandwidth.
-
 - You can view tracked LFS files using: <span style="color:lime">
 <code class="language-bash" data-trim>git lfs ls-files</code></span>
 
@@ -1377,6 +1379,7 @@ them into a modern, interactive slideshow in the browser.
 
 - The <span style="color:skyblue">HTML</span> file is the main entry point of the 
 presentation.
+
 - It defines the page structure, loads Reveal.js and its plugins, configures settings, 
 and optionally contains the slides directly if not using Markdown.
 
@@ -1386,6 +1389,7 @@ and optionally contains the slides directly if not using Markdown.
 
 - The <span style="color:skyblue">CSS</span> file defines the styling of your 
 presentation.
+
 - It customizes the look and feel - fonts, colors, layout - either by overriding the 
 default Reveal.js theme or adding new styles.
 
@@ -1395,6 +1399,7 @@ default Reveal.js theme or adding new styles.
 
 - The <span style="color:skyblue">Markdown (.md)</span> file contains the slide content 
 written in simple, readable Markdown syntax.
+
 - It’s loaded by the HTML file (via the Reveal.js markdown plugin), making it easy to 
 edit slides without touching HTML.
 
@@ -1404,12 +1409,27 @@ edit slides without touching HTML.
 
 - A <span style="color:skyblue">JSON</span> file is optional and is used to store extra 
 data or configuration for the presentation.
+
 - It can define metadata, timing, or slide-related data that JavaScript in the HTML file
  can read and use.
 
 ---
 
 # Git Commands
+
+--
+
+<div style="display: flex; gap: 0.5em; text-align: left;">
+<img src="figures/git_cheatsheet_page_1.jpg" alt="Git Page 1" width="550" height="650">
+<img src="figures/git_cheatsheet_page_2.jpg" alt="Git Page 2" width="550" height="650">
+</div>
+
+--
+
+<div style="display: flex; gap: 0.5em; text-align: left;">
+<img src="figures/git_cheatsheet_page_3.jpg" alt="Git Page 3" width="550" height="650">
+<img src="figures/git_cheatsheet_page_4.jpg" alt="Git Page 4" width="550" height="650">
+</div>
 
 --
 
@@ -2117,7 +2137,3 @@ convert screenshot.png screenshot.pdf
 ---
 
 # That is all!
-
-Include a machine learning cheatsheet image from LinkedIn
-
-Check what is saved on LinkedIn

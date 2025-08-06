@@ -151,7 +151,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal ul {
   display: inline-block;
   text-align: left;
-  margin: 0 0 0 1em;
+  margin: 0 0 0 0em;
 }
 
 /*Color Of the Bullet Points*/
@@ -186,7 +186,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal ol ol,
 .reveal ol ul {
   display: block;
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 .reveal dt {
@@ -194,7 +194,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 .reveal dd {
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 .reveal blockquote {
