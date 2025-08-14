@@ -1,4 +1,4 @@
-<!-- night_gold.css Theme -->
+<!-- night_skyblue.css Theme -->
 
 # One or two things we know about concept drift — a survey on monitoring in evolving environments. Part A: detecting concept drift
 
