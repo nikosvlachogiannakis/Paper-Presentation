@@ -105,9 +105,9 @@ classifier performance.
 - Drift detectors are decision algorithms on data-time-pairs that determine whether 
 there is drift
 
-- Accurate drift detection model if:
+<!-- - Accurate drift detection model if:
   - The algorithm always makes the right decision if we provide enough data
-  - Can control the chance of false positives independent of the stream.
+  - Can control the chance of false positives independent of the stream. -->
 
 - Drift detection is typically applied in a streaming setting where data points arrive 
 over time
@@ -296,10 +296,10 @@ human operators and propose guidelines for practical applications.
 <img src="figures/datasets_dark.png" alt="Datasets">
 
 - Generate data streams consisting of 750 samples
-- Drift times randomly picked between t = 100 and t = 650 by changing:
-  - Intensity
+- Drift times randomly picked between t = 100 and t = 650
+  <!-- - Intensity
   - Number of drift events
-  - Number of dimensions
+  - Number of dimensions -->
 
 Note: 
 1. Uniformly sampled from the unit square, drift is introduced
@@ -320,6 +320,36 @@ color-coded (Before drift: blue/yellow, after drift: green/purple)
 - Number of drift events, default is 1.
 - Number of dimensions by adding non-drifting/noise dimensions, default is 5, that is, 
 3 noise dimensions.
+
+--
+
+# Uniform
+
+<img src="figures/Uniform_1.png" alt="Uniform_1">
+
+--
+
+<img src="figures/Uniform_2.png" alt="Uniform_2">
+
+--
+
+# Gauss
+
+<img src="figures/Gauss_1.png" alt="Gauss_1">
+
+--
+
+<img src="figures/Gauss_2.png" alt="Gauss_2">
+
+--
+
+# Two Overlap
+
+<img src="figures/two_overlap_1.png" alt="two_overlap_1">
+
+--
+
+<img src="figures/two_overlap_2.png" alt="two_overlap_2">
 
 --
 
