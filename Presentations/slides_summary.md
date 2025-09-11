@@ -327,6 +327,16 @@ color-coded (Before drift: blue/yellow, after drift: green/purple)
 
 <img src="figures/Uniform_1.png" alt="Uniform_1">
 
+Note:
+
+### Uniform
+
+- The dataset applies step-like mean shifts at change points.
+
+- If alt=True, it alternates direction (positive, negative, …).
+
+- Abrupt drift (step shifts at change points).
+
 --
 
 <img src="figures/Uniform_2.png" alt="Uniform_2">
@@ -337,6 +347,16 @@ color-coded (Before drift: blue/yellow, after drift: green/purple)
 
 <img src="figures/Gauss_1.png" alt="Gauss_1">
 
+Note:
+
+### Gaussian
+
+- Segments alternate with sign flips on one feature and scaled variance.
+
+- Each new segment introduces a distinct concept, and earlier concepts can reappear (because the sign alternates).
+
+- Recurring drift (concepts repeat over time).
+
 --
 
 <img src="figures/Gauss_2.png" alt="Gauss_2">
@@ -346,6 +366,16 @@ color-coded (Before drift: blue/yellow, after drift: green/purple)
 # Two Overlap
 
 <img src="figures/two_overlap_1.png" alt="two_overlap_1">
+
+Note:
+
+### Two Overlap
+
+- Starts with a strong mean shift, then alternates the sign of feature 0 segment by segment.
+
+- This makes earlier states reappear again and again.
+
+- Recurring drift (concepts cycle back).
 
 --
 
