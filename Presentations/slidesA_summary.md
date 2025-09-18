@@ -353,7 +353,8 @@ Note:
 
 - Segments alternate with sign flips on one feature and scaled variance.
 
-- Each new segment introduces a distinct concept, and earlier concepts can reappear (because the sign alternates).
+- Each new segment introduces a distinct concept, and earlier concepts can reappear 
+(because the sign alternates).
 
 - Recurring drift (concepts repeat over time).
 
@@ -371,7 +372,8 @@ Note:
 
 ### Two Overlap
 
-- Starts with a strong mean shift, then alternates the sign of feature 0 segment by segment.
+- Starts with a strong mean shift, then alternates the sign of feature 0 segment by 
+segment.
 
 - This makes earlier states reappear again and again.
 
@@ -622,8 +624,8 @@ does not inflict itself in correlations -->
 
 5. Block-based detectors are suitable when multiple drifts are expected
 
-<!-- 6. Avoid loss-based strategies when the target of the drift detection is monitoring for 
-anomalous behavior -->
+<!-- 6. Avoid loss-based strategies when the target of the drift detection is monitoring
+ for anomalous behavior -->
 
 Note: 
 
