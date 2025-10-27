@@ -1,5 +1,10 @@
 # Unsupervised Concept Drift Detection with a Discriminative Classifier
 
+Gözüaçık, Ö., Büyükçakır, A., Bonab, H., Can, F. (2019)
+
+Proceedings of the 28th ACM International Conference on Information and 
+Knowledge Management
+
 Note: Presents an unspervised method called D3 which uses a discriminative 
 cassifier with a sliding window to detect concept drift by monitoring changes in
 the feture space.
@@ -37,7 +42,7 @@ evolve over time. This is known as **concept drift**
 
 ---
 
-# Problemn Definition
+# Problem Definition
 
 - Concept Drift: Determines whether the joint distribution differs between $t_0$
 and $t_1$
@@ -48,8 +53,10 @@ $$p_{t_0}(X,y) \neq p_{t_1}(X,y)$$
 
 # Related Work
 
+$\newline$
 **Rigorous Concept Drift**: Concept drifts happening on both $p(X)$ and $p(y|X)$
 
+$\newline$
 ### Approaches for detecting **Rigorous Concept Drift**:
    
    1. Based on **Novelty Detection**(clustering or outlier detection)
@@ -206,3 +213,7 @@ dominant
 Note: The critical distance for Nemenyi Significance is calculated by plugging 
 in values specific for our setting from the Critical Values Table for Two Tailed
  Nemenyi Test
+
+---
+
+# Thank You!
