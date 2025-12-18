@@ -113,7 +113,7 @@ which will be used in the online phase
   - For each window performs data modeling and computes the per-batch and 
   per-label **Frechét Drift Distances** from the baseline distribution
 
-$$F_{DD}(b, w) = \||\mu_b - \mu_w\||_2^2 + \operatorname{Tr}(\Sigma_b + \Sigma_w - 2 \Sigma_b \Sigma_w)$$
+$$F_{DD}(b, w) = \||\mu_b - \mu_w\||_2^2 + \operatorname{Tr}(\Sigma_b + \Sigma_w - 2 \sqrt{\Sigma_b \Sigma_w})$$
 
 - Sort the distances in **descending order**
 
@@ -163,6 +163,8 @@ component analysis (PCA)
 **4. Distribution Distances Computation**
 
 Calculate the per-batch and per-label **Frechét Drift Distance (FDD)** distances between the window and the baseline distribution
+
+$\newline$
 
 **5. Distribution Distances Evaluation**
 
@@ -215,12 +217,10 @@ For each drift level **0%, 5%, 10%, 15%, 20%**:
 3. $Accuracy = \frac{\text{number of correct predictions}}{100}$
 4. They repeat the process **5 times** and take the **average accuracy**.
 
-<img src="figures/driftlens/Adrift.png" style="width:50%;">
-
 Note:
 
 This results in accuracy values:
-- **A₀%** (no-drift accuracy → false alarm control)  
+- **A₀%** (no-drift accuracy → **Type 1 error (false alarm)**)  
 - **A₅%, A₁₀%, A₁₅%, A₂₀%** (drift detection accuracy at different severities)
 
 --
@@ -237,13 +237,70 @@ This results in accuracy values:
 
 - It is used to identify the best drift detector overall
 
-<img src="figures/driftlens/hdd.png" style="width:40%;">
+<div>
+<img src="figures/driftlens/hdd.png" style="width:40%; margin:0px;">
+</div>
 
+<div style="margin:40px;">
+<img src="figures/driftlens/Adrift.png" style="width:50%; margin:0px;">
+</div>
 
 Note:
 
 DriftLens is tested on synthetic drift, meaning the authors create the drift 
 themselves during evaluation.
+
+### Why HDD Behaves Like the F1 Score
+
+**Example 1: Always predict “drift”**
+
+- A₀% = 0%  
+- Ādrift = 100%  
+
+Average accuracy = 50% (misleading)  
+HDD = 0% (correctly terrible)
+
+**Example 2: Never predict “drift”**
+
+- A₀% = 100%  
+- Ādrift = 0%  
+
+Average accuracy = 50% (misleading)  
+HDD = 0% (correctly terrible)
+
+Just like the F1 score, **HDD collapses when one side fails**, ensuring that only balanced drift detectors receive high scores.
+
+
+# Harmonic Mean
+
+$ H(x_1, x_2, \cdots, x_n) = \frac{n}{\sum_{i=1}^{n} \frac{1}{x_i}} $
+
+**If one component is large and the other is small, the harmonic mean stays close to the smaller value.**
+
+This is exactly what you want in both:
+
+### F1 score
+
+$$F_1 = \frac{2}{recall^{-1} + precision^{-1}}$$
+
+$$precision = \frac{tp}{tp + fp}$$
+
+$$recall = \frac{tp}{tp + fn}$$
+
+- If precision is high but recall is low → F1 stays low
+
+- If recall is high but precision is low → F1 stays low
+
+This prevents misleadingly optimistic scores.
+
+### Harmonic drift score
+
+- If per-batch drift is high but per-label drift is low → drift is not confirmed
+
+- If per-label drift is high but per-batch drift is low → drift is not confirmed
+
+Only when both signals agree does the score rise.
+
 
 ---
 
